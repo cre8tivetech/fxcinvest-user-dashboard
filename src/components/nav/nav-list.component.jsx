@@ -23,7 +23,7 @@ const NavList = ({ type }) => {
       </NavLink>
 
       <NavLink activeClassName="active" className="list" to="/about-us">
-        <li>Internal Transfer</li>
+        <li>Internal Transfers</li>
       </NavLink>
 
       <NavLink activeClassName="active" className="list" to="/about-us">
