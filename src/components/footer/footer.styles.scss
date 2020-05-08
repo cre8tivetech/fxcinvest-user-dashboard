@@ -1,0 +1,23 @@
+.footer {
+  position: absolute;
+  background-color: var(--primary-color);
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  color: #fff;
+  font-size: 1.6rem;
+
+  &__content {
+    font-family: 'Poppins-Light';
+    padding: 1.5rem;
+    h1 {
+      font-size: 1.6rem;
+      text-transform: uppercase;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
