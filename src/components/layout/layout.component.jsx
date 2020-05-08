@@ -1,16 +1,18 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-import Header from "../header/header.component";
-import Footer from '../footer/footer.component';
+// import Header from "../header/header.component";
+// import Footer from "../footer/footer.component";
+import Nav from "../nav/nav.component";
 
 const Layout = ({ children, location }) => {
   return (
     <Fragment>
-      <Header />
+      <Nav />
+      {/* <Header /> */}
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
-  )
-}
+  );
+};
 
 export default Layout;
