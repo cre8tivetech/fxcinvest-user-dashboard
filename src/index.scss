@@ -60,14 +60,18 @@
 
 :root {
   --primary-color: #1D177B;
-  --primary-color-2: rgb(30, 19, 182);
-  --primary-color-3: rgb(35, 19, 252);
-
+  --primary-color-1: rgb(30, 19, 182);
+  --primary-color-2: rgb(35, 19, 252);
   --primary-color-transp: rgba(30, 23, 123, 0.6);
+
   --secondary-color: #FFAD00;
+  --secondary-color-1: rgb(255, 153, 0);
+  --secondary-color-2: rgb(255, 123, 0);
+
   --tertiary-color: #4D4D4D;
   --card-color: #F4F4F4;
   --card-color1: rgb(238, 238, 238);
+  --card-color2: rgb(224, 224, 224);
   --accordion-color1: #C4C4C4;
   --primary-font: Poppins-Regular, sans-serif;
 }
