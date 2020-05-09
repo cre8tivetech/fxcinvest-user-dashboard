@@ -6,7 +6,7 @@ const Message = () => {
     <div className="message">
       <span className="message--close">&times;</span>
       <h1>Welecome to MyFXCINVEST - your personal client area.</h1>
-      <p>Your MyFXCINVEST User name: dukweb4</p>
+      <p>Your MyFXCINVEST User name: joshmatparrot</p>
       <p>
         We have sent your login information to your email. Please Confrim your
         email.

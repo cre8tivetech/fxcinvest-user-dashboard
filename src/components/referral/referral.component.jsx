@@ -19,7 +19,7 @@ const Referral = () => {
             id=""
             placeholder="https://fxcinvest.com/register/?ref=joshmatparrot"
           />
-          <div className="btn">Copy</div>
+          <div className="btn ripple1">Copy</div>
         </div>
       </div>
     </div>

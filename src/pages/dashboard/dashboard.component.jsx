@@ -19,8 +19,12 @@ const Dashboard = () => {
             <p>Balance: $1000.00</p>
             <p>Total: $100000.00</p>
             <div className="dashboard__content--box__btn">
-              <div className="dashboard__content--box__btn--1">Withdraw</div>
-              <div className="dashboard__content--box__btn--2">Transfer</div>
+              <div className="dashboard__content--box__btn--1 ripple1">
+                Withdraw
+              </div>
+              <div className="dashboard__content--box__btn--2 ripple2">
+                Transfer
+              </div>
             </div>
           </div>
           <div className="dashboard__content--box">
@@ -29,8 +33,12 @@ const Dashboard = () => {
             <p>Balance: $50.00</p>
             <p>Total: $100.00</p>
             <div className="dashboard__content--box__btn">
-              <div className="dashboard__content--box__btn--1">Withdraw</div>
-              <div className="dashboard__content--box__btn--2">Transfer</div>
+              <div className="dashboard__content--box__btn--1 ripple1">
+                Withdraw
+              </div>
+              <div className="dashboard__content--box__btn--2 ripple2">
+                Transfer
+              </div>
             </div>
           </div>
           <div className="dashboard__content--box">
