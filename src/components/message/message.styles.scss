@@ -1,0 +1,30 @@
+.message {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 90%;
+  margin: auto;
+  padding: 2rem;
+  background-color: #F7E4BE;
+
+  &--close {
+    position: absolute;
+    right: 2rem;
+    top: 0;
+    font-size: 2.6rem;
+    cursor: pointer;
+  }
+
+  h1 {
+    font-family: 'Poppins-Light';
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+}
