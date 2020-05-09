@@ -59,8 +59,10 @@
   }
 
   &__list {
+    height: 100%;
     margin-top: 3rem;
     font-size: 1.6rem;
+    background-color: var(--primary-color);
     ul {
       // display: inline-flex;
       flex-direction: column;
