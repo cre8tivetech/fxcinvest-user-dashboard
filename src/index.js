@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
 import "./themes/button.styles.scss";
+import "./themes/lines.styles.scss";
 import "./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";

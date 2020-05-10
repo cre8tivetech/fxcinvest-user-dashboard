@@ -27,7 +27,7 @@ const MyTransfers = () => {
             <input type="date" name="" id="" />
           </div>
           <div className="my-transfers__type--box4 ripple1">
-            <div className="">
+            <div>
               <i className="fa fa-search"></i>
               <p>Search</p>
             </div>
@@ -35,18 +35,18 @@ const MyTransfers = () => {
         </div>
         <div className="my-transfers__box">
           <h1>Deposits</h1>
-          <div className="line"></div>
+          <div className="line1"></div>
           <p>You didn't make any transfer yet</p>
           <div className="my-transfers__box--btn ripple1">Deposit Now</div>
         </div>
         <div className="my-transfers__box">
           <h1>Withdrawals</h1>
-          <div className="line"></div>
+          <div className="line1"></div>
           <p>You didn't make any transfer yet</p>
         </div>
         <div className="my-transfers__box">
           <h1>Internal transfers</h1>
-          <div className="line"></div>
+          <div className="line1"></div>
           <p>You didn't make any transfer yet</p>
         </div>
         <div className="my-transfers__withdrawals"></div>
