@@ -6,6 +6,7 @@ import MyTransfers from "./pages/my-transfers/my-transfers.component";
 import DepositFunds from "./pages/deposit-funds.component.jsx/deposit-funds.component";
 import WithdrawFunds from "./pages/withdraw-funds/withdraw-funds.component";
 import InternalTransfers from "./pages/internal-transfers/internal-transfers.component";
+import Investment from "./pages/investment/investment.component";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route exact path="/deposit-funds" component={DepositFunds} />
         <Route exact path="/withdraw-funds" component={WithdrawFunds} />
         <Route exact path="/internal-transfers" component={InternalTransfers} />
-        {/* <Route path="/test-page" render={() => <p>Routing test page</p>} /> */}
+        <Route exact path="/investment" component={Investment} />
+        <Route path="/test-page" render={() => <p>Routing test page</p>} />
       </Switch>
     </div>
   );
