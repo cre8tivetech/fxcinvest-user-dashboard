@@ -1,0 +1,111 @@
+.deposit-funds {
+  position: relative;
+  min-height: 92vh;
+  padding-top: 8rem;
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--primary-color);
+
+  &__title {
+    width: 90%;
+    margin-top: 5rem;
+    align-self: center;
+    font-size: 1.3rem;
+    text-align: start;
+    margin-bottom: 2rem;
+  }
+
+  &__box {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border: 2px solid var(--card-color1);
+    padding: 2rem;
+
+    &--header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      font-size: 1.4rem;
+      color: var(--tertiary-color);
+
+      &__1 {
+        flex-basis: 25%;
+      }
+
+      &__2 {
+        flex-basis: 25%;
+      }
+
+      &__3 {
+        flex-basis: 30%;
+      }
+      &__4 {
+        flex-basis: 10%;
+      }
+    }
+    
+    &--content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: 1.3rem;
+      color: var(--primary-color);
+
+      &__1 {
+        display: flex;
+        flex-basis: 25%;
+        flex-shrink: 1;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        &>*:first-child{
+          padding-right: 2rem;
+        }
+      }
+
+      &__2 {
+        flex-basis: 25%;
+      }
+
+      &__3 {
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      &__4 {
+        flex-basis: 5%;
+        padding: 1rem;
+        background-color: var(--primary-color);
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    &--btn {
+      color: white;
+      padding: 1rem 2rem;
+      margin-top: 1.5rem;
+      font-size: 1.3rem;
+      background-color: var(--primary-color);
+    }
+
+    &:not(:nth-of-type(6)) {
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      align-self: start;
+      font-size: 2rem;
+    }
+  }
+}

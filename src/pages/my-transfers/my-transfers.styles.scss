@@ -1,6 +1,6 @@
 .my-transfers {
   position: relative;
-  min-height: 100vh;
+  min-height: 92vh;
   padding-top: 8rem;
   padding-bottom: 8rem;
   width: 80%;
@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
 
-  &__title{
+  &__title {
     width: 90%;
     margin-top: 5rem;
     align-self: center;
@@ -19,7 +19,7 @@
     margin-bottom: 2rem;
   }
 
-  &__type{
+  &__type {
     width: 90%;
     align-self: center;
     display: flex;
@@ -101,16 +101,9 @@
     h1 {
       font-size: 2rem;
     }
-    p{
+    p {
       font-size: 1.3rem;
       color: var(--tertiary-color);
     }
   }
-}
-
-.line {
-  height: 0.1rem;
-  width: 100%;
-  margin: 1rem 0;
-  background-color: var(--card-color2);
 }
