@@ -56,6 +56,12 @@
   src: url("./assets/fonts/prata/Prata-Regular.ttf");
 }
 
+// Grand Hotel
+@font-face {
+  font-family: GrandHotel-Regular;
+  src: url("./assets/fonts/Grand_Hotel/GrandHotel-Regular.ttf");
+}
+
 
 
 :root {
@@ -69,6 +75,8 @@
   --secondary-color-2: rgb(255, 123, 0);
 
   --tertiary-color: #4D4D4D;
+  --tertiary-color1: rgb(112, 112, 112);
+
   --card-color: #F4F4F4;
   --card-color1: rgb(235, 235, 235);
   --card-color2: rgb(224, 224, 224);
