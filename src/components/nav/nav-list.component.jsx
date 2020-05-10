@@ -18,23 +18,27 @@ const NavList = ({ type }) => {
         <li>Deposit Funds</li>
       </NavLink>
 
-      <NavLink activeClassName="active" className="list" to="/about-us">
+      <NavLink activeClassName="active" className="list" to="/withdraw-funds">
         <li>Withdraw Funds</li>
       </NavLink>
 
-      <NavLink activeClassName="active" className="list" to="/about-us">
+      <NavLink
+        activeClassName="active"
+        className="list"
+        to="/internal-transfers"
+      >
         <li>Internal Transfers</li>
       </NavLink>
 
-      <NavLink activeClassName="active" className="list" to="/about-us">
+      <NavLink activeClassName="active" className="list" to="/investment">
         <li>Investment</li>
       </NavLink>
 
-      <NavLink activeClassName="active" className="list" to="/about-us">
+      <NavLink activeClassName="active" className="list" to="/referrals">
         <li>Referrals</li>
       </NavLink>
 
-      <NavLink activeClassName="active" className="list" to="/about-us">
+      <NavLink activeClassName="active" className="list" to="/my-profile">
         <li>My Profile</li>
       </NavLink>
 

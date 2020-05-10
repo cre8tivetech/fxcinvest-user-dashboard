@@ -4,6 +4,7 @@ import "./App.css";
 import Dashboard from "./pages/dashboard/dashboard.component";
 import MyTransfers from "./pages/my-transfers/my-transfers.component";
 import DepositFunds from "./pages/deposit-funds.component.jsx/deposit-funds.component";
+import WithdrawFunds from "./pages/withdraw-funds/withdraw-funds.component";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/my-transfers" component={MyTransfers} />
         <Route exact path="/deposit-funds" component={DepositFunds} />
-        {/* <Route exact path="/register" component={Auth} /> */}
+        <Route exact path="/withdraw-funds" component={WithdrawFunds} />
         {/* <Route exact path="/signin" component={Auth} /> */}
         {/* <Route path="/test-page" render={() => <p>Routing test page</p>} /> */}
       </Switch>

@@ -1,4 +1,4 @@
-.deposit-funds {
+.withdraw-funds {
   position: relative;
   min-height: 92vh;
   padding-top: 8rem;
@@ -45,11 +45,12 @@
       &__3 {
         flex-basis: 30%;
       }
+
       &__4 {
         flex-basis: 10%;
       }
     }
-    
+
     &--content {
       display: flex;
       flex-direction: row;
@@ -66,7 +67,7 @@
         justify-content: center;
         align-items: center;
 
-        &>*:first-child{
+        &>*:first-child {
           padding-right: 2rem;
         }
       }
@@ -82,6 +83,7 @@
         justify-content: space-evenly;
         align-items: center;
       }
+
       &__4 {
         flex-basis: 5%;
         padding: 1rem;
@@ -90,9 +92,11 @@
         cursor: pointer;
       }
     }
+
     &:not(:nth-of-type(6)) {
       margin-bottom: 2rem;
     }
+
     h1 {
       align-self: start;
       font-size: 2rem;
