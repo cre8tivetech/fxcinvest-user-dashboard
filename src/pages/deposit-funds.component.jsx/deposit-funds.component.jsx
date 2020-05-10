@@ -101,6 +101,17 @@ const DepositFunds = () => {
             </div>
           </div>
         </div>
+        <div className="deposit-funds__bottom">
+          <p>
+            Deposits are processed instantly in case there is no need for
+            additional verification.
+          </p>
+          <p>
+            FXCINVEST is not liable for any transfer delays you may experience
+            due to a disruption of service in the system of the payment
+            processor.
+          </p>
+        </div>
       </div>
     </Layout>
   );

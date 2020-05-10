@@ -108,4 +108,14 @@
       font-size: 2rem;
     }
   }
+
+  &__bottom {
+    // font-size: 1.1rem ;
+    width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    text-align: start;
+    align-self: center;
+    color: var(--tertiary-color);
+  }
 }
