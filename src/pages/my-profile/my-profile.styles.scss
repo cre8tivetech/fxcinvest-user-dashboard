@@ -1,0 +1,92 @@
+.my-profile {
+  position: relative;
+  min-height: 92.5vh;
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: center;
+
+  &__title {
+    width: 90%;
+    font-size: 1.3rem;
+    display: flex;
+    color: var(--primary-color);
+    margin: 5rem auto 4rem auto;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+
+    &>* {
+      width: 60%;
+      display: flex;
+      font-size: 1rem;
+      flex-direction: column;
+      border: 1px solid var(--card-color2);
+      margin: 2rem 0;
+
+      &>:first-child {
+        font-family: 'Poppins-Light';
+        color: var(--primary-color);
+        padding: 2rem 2rem 0.5rem 2rem;
+
+      }
+    }
+
+    &--box1 {
+      color: var(--primary-color);
+      p{
+        font-size: 1.2rem;
+        padding: 1rem 0;
+      }
+    }
+
+    &--box2 {
+      padding: 0 2rem;
+      
+      &__content {
+        display: flex;
+        flex-direction: column;
+
+        &>*{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 1rem 0;
+          font-size: 1.3rem;
+
+          &>*{
+            flex-basis: 50%;
+            text-align: start;
+          }
+
+          &:last-child {
+            :first-of-type {
+              flex-basis: 70%;
+              text-align: left;
+              align-self: flex-start;
+            }
+            :last-of-type {
+              flex-basis: 30%;
+              color: var(--secondary-color);
+              text-align: center;
+              cursor: pointer;
+
+              &:hover {
+                color: var(--secondary-color-2);
+              }
+            }
+          }
+          
+        }
+      }
+    }
+  }
+}

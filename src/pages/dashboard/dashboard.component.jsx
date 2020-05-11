@@ -8,6 +8,7 @@ import Referral from "../../components/referral/referral.component";
 import Message from "../../components/message/message.component";
 
 const Dashboard = () => {
+  window.scroll(0, 0);
   return (
     <Layout>
       <div className="dashboard">

@@ -5,6 +5,7 @@ import Message from "../../components/message/message.component";
 import Referral from "../../components/referral/referral.component";
 
 const Referrals = () => {
+  window.scroll(0, 0);
   return (
     <Layout>
       <div className="referrals">

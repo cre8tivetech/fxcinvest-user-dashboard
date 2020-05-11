@@ -6,6 +6,7 @@ import BankTransferImg from "../../assets/img/bank_transfer.svg";
 import BitcoinImg from "../../assets/img/Bitcoin_80px.svg";
 
 const WithdrawFunds = () => {
+  window.scroll(0, 0);
   return (
     <Layout>
       <div className="withdraw-funds">
