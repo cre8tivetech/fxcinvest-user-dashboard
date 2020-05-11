@@ -4,6 +4,7 @@ import Message from "../../components/message/message.component";
 import Layout from "../../components/layout/layout.component";
 
 const MyTransfers = () => {
+  window.scroll(0, 0);
   return (
     <Layout>
       <div className="my-transfers">

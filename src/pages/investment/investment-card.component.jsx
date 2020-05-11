@@ -28,7 +28,9 @@ const InvestmentCard = () => {
             ))}
           </div>
           <div className="investment__cards--box__btn">
-            <p style={{ backgroundColor: item.color }}>Select</p>
+            <p className="ripple" style={{ backgroundColor: item.color }}>
+              Select
+            </p>
           </div>
         </div>
       ))}

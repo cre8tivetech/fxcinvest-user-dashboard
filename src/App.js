@@ -8,6 +8,7 @@ import WithdrawFunds from "./pages/withdraw-funds/withdraw-funds.component";
 import InternalTransfers from "./pages/internal-transfers/internal-transfers.component";
 import Investment from "./pages/investment/investment.component";
 import Referrals from "./pages/referrals/referrals.component";
+import MyProfile from "./pages/my-profile/my-profile.component";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/internal-transfers" component={InternalTransfers} />
         <Route exact path="/investment" component={Investment} />
         <Route exact path="/referrals" component={Referrals} />
+        <Route exact path="/my-profile" component={MyProfile} />
         <Route path="/test-page" render={() => <p>Routing test page</p>} />
       </Switch>
     </div>

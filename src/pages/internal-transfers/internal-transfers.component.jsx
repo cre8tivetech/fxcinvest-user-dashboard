@@ -5,6 +5,7 @@ import TransferImg from "../../assets/img/transfer-icon.svg";
 import Message from "../../components/message/message.component";
 
 const InternalTransfers = () => {
+  window.scroll(0, 0);
   return (
     <Layout>
       <div className="internal-transfers">

@@ -7,6 +7,7 @@ import MasterImg from "../../assets/img/mastercard-icon.svg";
 import BitcoinImg from "../../assets/img/Bitcoin_80px.svg";
 
 const DepositFunds = () => {
+  window.scroll(0, 0);
   return (
     <Layout>
       <div className="deposit-funds">

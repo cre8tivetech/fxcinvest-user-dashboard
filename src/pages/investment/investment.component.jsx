@@ -6,6 +6,7 @@ import InvestmentCard from "./investment-card.component";
 import Message from "../../components/message/message.component";
 
 const Investment = () => {
+  window.scroll(0, 0);
   return (
     <Layout>
       <SEO title="Get all investment plans" />
