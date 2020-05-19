@@ -1,0 +1,218 @@
+@import '../../themes/mixins.scss';
+
+.deposit-funds {
+  position: relative;
+  min-height: 92vh;
+  padding-top: 8rem;
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--primary-color);
+
+  @include respond(screenMenu) {
+    padding-top: 7rem;
+  }
+
+  @include respond(tabPort) {
+    padding-top: 6rem;
+  }
+
+  @include respond(phone) {
+    width: 90%;
+  }
+
+  &__title {
+    width: 90%;
+    margin-top: 5rem;
+    align-self: center;
+    font-size: 1.3rem;
+    text-align: start;
+    margin-bottom: 2rem;
+
+    @include respond(screenMenu) {
+      font-size: 1.1rem;
+    }
+
+    @include respond(tabPort) {
+      font-size: 0.9rem;
+      width: 95%;
+    }
+
+    @include respond(phone) {
+      font-size: 0.8rem;
+      width: 97%;
+    }
+  }
+
+  &__box {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border: 2px solid var(--card-color1);
+    padding: 2rem;
+
+    @include respond(tabPort) {
+      width: 95%;
+      padding: 1rem;
+    }
+
+    @include respond(phone) {
+      width: 97%;
+      padding: 0.7rem;
+    }
+
+    &--header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      font-size: 1.4rem;
+      color: var(--tertiary-color);
+
+      @include respond(tabPort) {
+        font-size: 1.2rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.1rem;
+      }
+
+      &__1 {
+        flex-basis: 25%;
+      }
+
+      &__2 {
+        flex-basis: 25%;
+      }
+
+      &__3 {
+        flex-basis: 30%;
+      }
+
+      &__4 {
+        flex-basis: 10%;
+      }
+    }
+
+    &--content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: 1.3rem;
+      color: var(--primary-color);
+
+      @include respond(tabPort) {
+        font-size: 1.2rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.1rem;
+      }
+
+      &>* {
+        img {
+          @include respond(tabLand) {
+            width: 12rem;
+          }
+
+          @include respond(screenMenu) {
+            width: 11rem;
+          }
+
+          @include respond(tabPort) {
+            width: 9rem;
+          }
+
+          @include respond(phone) {
+            width: 7rem;
+          }
+
+        }
+      }
+
+      &__1 {
+        display: flex;
+        flex-basis: 25%;
+        flex-shrink: 1;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        &>*:first-child {
+          padding-right: 2rem;
+        }
+      }
+
+      &__2 {
+        flex-basis: 25%;
+      }
+
+      &__3 {
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+
+      &__4 {
+        flex-basis: 5%;
+        padding: 1rem;
+        background-color: var(--primary-color);
+        color: white;
+        cursor: pointer;
+
+        @include respond(tabPort) {
+          padding: 0.5rem 1rem;
+        }
+
+        @include respond(phone) {
+          padding: 0.3rem 0.7rem;
+        }
+      }
+    }
+
+    &:not(:nth-of-type(6)) {
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      align-self: start;
+      font-size: 2rem;
+
+      @include respond(screenMenu) {
+        font-size: 1.8rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 1.6rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &__bottom {
+    // font-size: 1.1rem ;
+    width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    text-align: start;
+    align-self: center;
+    color: var(--tertiary-color);
+
+    @include respond(tabPort) {
+      font-size: 0.9rem;
+    }
+
+    @include respond(phone) {
+      font-size: 0.85rem;
+    }
+  }
+}

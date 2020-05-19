@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Layout from "../../components/layout/layout.component";
 import "./internal-transfers.styles.scss";
+import "../deposit-funds/deposit-funds.styles.scss";
 import TransferImg from "../../assets/img/transfer-icon.svg";
 import Message from "../../components/message/message.component";
+import { selectMenu } from "../../redux/ui/ui.selector";
+import { createStructuredSelector } from "reselect";
+import { connect } from "react-redux";
 
-const InternalTransfers = () => {
+const InternalTransfers = ({ menu }) => {
   window.scroll(0, 0);
+  const [width, setWidth] = useState();
+  const device = window.matchMedia("(max-width: 600px)");
+  const memorizedValue = useMemo(() => {
+    if (menu) device.matches ? setWidth("100%") : setWidth("93%");
+    if (!menu)
+      if (device.matches) {
+        setWidth("90%");
+      } else {
+        setWidth(null);
+      }
+  }, [device.matches, menu]);
+  useEffect(() => {}, [memorizedValue]);
   return (
     <Layout>
-      <div className="internal-transfers">
+      <div className="internal-transfers" style={{ width: width }}>
         <Message />
         <div className="internal-transfers__title">
           <h1>Internal Transfer Request</h1>
@@ -19,15 +35,10 @@ const InternalTransfers = () => {
         <div className="internal-transfers__form">
           <div className="internal-transfers__form--box">
             <div className="internal-transfers__form--box__title">
-              <p
-                data-tooltip="Please type a validt"
-                data-tooltip-location="left"
-              >
-                Amount
-              </p>
+              <p>Amount</p>
               <div
                 data-tooltip="Please type a valid amount"
-                data-tooltip-location="right"
+                data-tooltip-location="top"
               >
                 i
               </div>
@@ -39,7 +50,7 @@ const InternalTransfers = () => {
               <p>Deposit to account</p>
               <div
                 data-tooltip="Please type a valid account number"
-                data-tooltip-location="right"
+                data-tooltip-location="top"
               >
                 i
               </div>
@@ -68,4 +79,7 @@ const InternalTransfers = () => {
   );
 };
 
-export default InternalTransfers;
+const mapStateToProps = createStructuredSelector({
+  menu: selectMenu,
+});
+export default connect(mapStateToProps)(InternalTransfers);

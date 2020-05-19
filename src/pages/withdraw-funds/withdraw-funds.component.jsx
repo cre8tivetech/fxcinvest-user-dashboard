@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./withdraw-funds.styles.scss";
 import Layout from "../../components/layout/layout.component";
 import Message from "../../components/message/message.component";
 import BankTransferImg from "../../assets/img/bank_transfer.svg";
 import BitcoinImg from "../../assets/img/Bitcoin_80px.svg";
+import { useMemo } from "react";
+import { selectMenu } from "../../redux/ui/ui.selector";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-const WithdrawFunds = () => {
+const WithdrawFunds = ({ menu }) => {
   window.scroll(0, 0);
+  const [width, setWidth] = useState();
+  const device = window.matchMedia("(max-width: 600px)");
+  const memorizedValue = useMemo(() => {
+    if (menu) device.matches ? setWidth("100%") : setWidth("93%");
+    if (!menu)
+      if (device.matches) {
+        setWidth("90%");
+      } else {
+        setWidth(null);
+      }
+  }, [device.matches, menu]);
+  useEffect(() => {}, [memorizedValue]);
+
   return (
     <Layout>
-      <div className="withdraw-funds">
+      <div className="withdraw-funds" style={{ width: width }}>
         <Message />
         <div className="withdraw-funds__title">
           <h1>My Transfers</h1>
@@ -95,4 +112,7 @@ const WithdrawFunds = () => {
   );
 };
 
-export default WithdrawFunds;
+const mapStateToProps = createStructuredSelector({
+  menu: selectMenu,
+});
+export default connect(mapStateToProps)(WithdrawFunds);

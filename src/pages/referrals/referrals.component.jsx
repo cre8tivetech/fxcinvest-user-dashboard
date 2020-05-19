@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./referrals.styles.scss";
 import Layout from "../../components/layout/layout.component";
 import Message from "../../components/message/message.component";
 import Referral from "../../components/referral/referral.component";
+import { useMemo } from "react";
+import { connect } from "react-redux";
+import { selectMenu } from "../../redux/ui/ui.selector";
+import { createStructuredSelector } from "reselect";
 
-const Referrals = () => {
+const Referrals = ({ menu }) => {
   window.scroll(0, 0);
+  const [width, setWidth] = useState();
+  const device = window.matchMedia("(max-width: 600px)");
+  const memorizedValue = useMemo(() => {
+    if (menu) device.matches ? setWidth("100%") : setWidth("93%");
+    if (!menu)
+      if (device.matches) {
+        setWidth("90%");
+      } else {
+        setWidth(null);
+      }
+  }, [device.matches, menu]);
+  useEffect(() => {}, [memorizedValue]);
   return (
     <Layout>
-      <div className="referrals">
+      <div className="referrals" style={{ width: width }}>
         <Message />
         <div className="referrals__title">
           <h1>Refer-A-Friend Program - Earn $50 Each</h1>
@@ -62,4 +78,7 @@ const Referrals = () => {
   );
 };
 
-export default Referrals;
+const mapStateToProps = createStructuredSelector({
+  menu: selectMenu,
+});
+export default connect(mapStateToProps)(Referrals);

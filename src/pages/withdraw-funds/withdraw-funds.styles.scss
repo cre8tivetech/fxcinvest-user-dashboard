@@ -1,3 +1,5 @@
+@import '../../themes/mixins.scss';
+
 .withdraw-funds {
   position: relative;
   min-height: 92vh;
@@ -9,6 +11,20 @@
   justify-content: center;
   color: var(--primary-color);
 
+  @include respond(screenMenu) {
+    padding-top: 7rem;
+  }
+
+  @include respond(tabPort) {
+    padding-top: 6rem;
+  }
+
+  @include respond(phone) {
+    width: 90%;
+  }
+
+
+
   &__title {
     width: 90%;
     margin-top: 5rem;
@@ -16,6 +32,20 @@
     font-size: 1.3rem;
     text-align: start;
     margin-bottom: 2rem;
+
+    @include respond(screenMenu) {
+      font-size: 1.1rem;
+    }
+
+    @include respond(tabPort) {
+      font-size: 0.9rem;
+      width: 95%;
+    }
+
+    @include respond(phone) {
+      font-size: 0.8rem;
+      width: 97%;
+    }
   }
 
   &__box {
@@ -27,12 +57,31 @@
     border: 2px solid var(--card-color1);
     padding: 2rem;
 
+    @include respond(tabPort) {
+      width: 95%;
+      padding: 1rem;
+    }
+
+    @include respond(phone) {
+      width: 97%;
+      padding: 0.7rem;
+    }
+
     &--header {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       font-size: 1.4rem;
       color: var(--tertiary-color);
+
+      @include respond(tabPort) {
+        font-size: 1.2rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.05rem;
+      }
+
 
       &__1 {
         flex-basis: 25%;
@@ -58,6 +107,35 @@
       align-items: center;
       font-size: 1.3rem;
       color: var(--primary-color);
+
+      @include respond(tabPort) {
+        font-size: 1.2rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1rem;
+      }
+
+      &>* {
+        img {
+          @include respond(tabLand) {
+            width: 12rem;
+          }
+
+          @include respond(screenMenu) {
+            width: 11rem;
+          }
+
+          @include respond(tabPort) {
+            width: 9rem;
+          }
+
+          @include respond(phone) {
+            width: 7rem;
+          }
+
+        }
+      }
 
       &__1 {
         display: flex;
@@ -90,6 +168,14 @@
         background-color: var(--primary-color);
         color: white;
         cursor: pointer;
+
+        @include respond(tabPort) {
+          padding: 0.5rem 1rem;
+        }
+
+        @include respond(phone) {
+          padding: 0.3rem 0.7rem;
+        }
       }
     }
 
@@ -100,6 +186,18 @@
     h1 {
       align-self: start;
       font-size: 2rem;
+
+      @include respond(screenMenu) {
+        font-size: 1.8rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 1.6rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.5rem;
+      }
     }
   }
 
@@ -111,5 +209,13 @@
     text-align: start;
     align-self: center;
     color: var(--tertiary-color);
+
+    @include respond(tabPort) {
+      font-size: 0.9rem;
+    }
+
+    @include respond(phone) {
+      font-size: 0.85rem;
+    }
   }
 }

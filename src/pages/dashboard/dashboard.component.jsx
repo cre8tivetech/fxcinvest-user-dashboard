@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Layout from "../../components/layout/layout.component";
 import EarnImg from "../../assets/img/stack-of-coins.svg";
 import RefImg from "../../assets/img/moneyPercentage.svg";
@@ -6,12 +6,27 @@ import InvImg from "../../assets/img/profits.svg";
 import "./dashboard.styles.scss";
 import Referral from "../../components/referral/referral.component";
 import Message from "../../components/message/message.component";
+import { selectMenu } from "../../redux/ui/ui.selector";
+import { createStructuredSelector } from "reselect";
+import { connect } from "react-redux";
 
-const Dashboard = () => {
+const Dashboard = ({ menu }) => {
   window.scroll(0, 0);
+  const [width, setWidth] = useState();
+  const device = window.matchMedia("(max-width: 600px)");
+  const memorizedValue = useMemo(() => {
+    if (menu) device.matches ? setWidth("100%") : setWidth("93%");
+    if (!menu)
+      if (device.matches) {
+        setWidth("90%");
+      } else {
+        setWidth(null);
+      }
+  }, [device.matches, menu]);
+  useEffect(() => {}, [memorizedValue]);
   return (
     <Layout>
-      <div className="dashboard">
+      <div className="dashboard" style={{ width: width }}>
         <Message />
         <div className="dashboard__content">
           <div className="dashboard__content--box">
@@ -60,4 +75,8 @@ const Dashboard = () => {
     </Layout>
   );
 };
-export default Dashboard;
+
+const mapStateToProps = createStructuredSelector({
+  menu: selectMenu,
+});
+export default connect(mapStateToProps)(Dashboard);

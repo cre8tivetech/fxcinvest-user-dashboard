@@ -1,3 +1,5 @@
+@import '../../themes/mixins.scss';
+
 .message {
   position: relative;
   display: flex;
@@ -5,8 +7,22 @@
   align-items: flex-start;
   width: 90%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 2rem 2rem 2rem;
   background-color: #F7E4BE;
+
+  @include respond(tabLand) {
+    padding: 2rem 2rem 1.5rem 2rem;
+    width: 90%;
+  }
+
+  @include respond(tabPort) {
+    width: 95%;
+  }
+
+  @include respond(phone) {
+    width: 97%;
+    padding: 2.5rem 2rem 1rem 2rem;
+  }
 
   &--close {
     position: absolute;
@@ -14,6 +30,25 @@
     top: 0;
     font-size: 2.6rem;
     cursor: pointer;
+
+    &:hover {
+      color: red;
+    }
+
+    @include respond(tabLand) {
+      right: 1rem;
+      font-size: 2.3rem;
+    }
+
+    @include respond(tabPort) {
+      right: 0.5rem;
+      font-size: 2.2rem;
+    }
+
+    @include respond(phone) {
+      right: 0.3rem;
+      font-size: 2rem;
+    }
   }
 
   h1 {
@@ -21,10 +56,34 @@
     font-size: 1.6rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+
+    @include respond(screenMenu) {
+      font-size: 1.6rem;
+    }
+
+    @include respond(tabPort) {
+      font-size: 1.5rem;
+    }
+
+    @include respond(phone) {
+      font-size: 1.3rem;
+    }
   }
 
   p {
     font-size: 1.3rem;
     font-weight: 600;
+
+    @include respond(screenMenu) {
+      font-size: 1.1rem;
+    }
+
+    @include respond(tabPort) {
+      font-size: 1rem;
+    }
+
+    @include respond(phone) {
+      font-size: 0.9rem;
+    }
   }
 }
