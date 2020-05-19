@@ -6,6 +6,7 @@ import "./index.scss";
 import "./themes/button.styles.scss";
 import "./themes/lines.styles.scss";
 import "./themes/tooltip.styles.scss";
+import "./themes/particles.styles.scss";
 import "./themes/mixins.scss";
 // import "./assets/fonts/font-awesome-pro-5.13.0-web/css/all.min.css";
 import "./assets/fonts/font-awesome-pro-5.13.0-web/css/all.min.css";
