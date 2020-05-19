@@ -1,0 +1,153 @@
+@import '../../themes/mixins.scss';
+
+.error-404 {
+  position: relative;
+  min-height: 93vh;
+  padding-top: 0rem;
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: center;
+
+  // @include respond(screenMenu) {
+  //   padding-top: 7rem;
+  // }
+
+  // @include respond(tabPort) {
+  //   padding-top: 6rem;
+  // }
+
+  @include respond(phone) {
+    width: 90%;
+  }
+
+  &__contents {
+    position: relative;
+    width: 90%;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    color: var(--primary-color);
+    margin: 1rem auto 4rem auto;
+
+    @include respond(screenMenu) {
+      font-size: 1.1rem;
+    }
+
+    @include respond(tabPort) {
+      font-size: 0.9rem;
+      margin: 1rem auto 2rem auto;
+      width: 95%;
+    }
+
+    @include respond(phone) {
+      font-size: 0.8rem;
+      margin: 1rem auto 0rem auto;
+      // width: 90%;
+      justify-content: center;
+    }
+
+    img {
+      width: 30%;
+      margin: auto;
+
+      @include respond(screenMenu) {
+        width: 30%;
+      }
+
+      @include respond(tabPort) {
+        width: 30%;
+      }
+
+      @include respond(phone) {
+        width: 60%;
+      }
+    }
+
+    h1 {
+      font-size: 8.5rem;
+
+      // font-family: GrandHotel-Regular;
+      // font-family: Prata-Regular;
+      @include respond(screenMenu) {
+        font-size: 8rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 7rem;
+      }
+
+      @include respond(phone) {
+        font-size: 6rem;
+      }
+    }
+
+    h4 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+
+      @include respond(screenMenu) {
+        font-size: 2.8rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 2.5rem;
+      }
+
+      @include respond(phone) {
+        font-size: 2.3rem;
+      }
+    }
+
+    p {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+
+      @include respond(screenMenu) {
+        font-size: 1.9rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 1.95rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.8rem;
+      }
+    }
+
+    &--btn {
+      margin: auto;
+      padding: 1rem 1.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 0.5rem;
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+
+      a {
+        text-decoration: none;
+      }
+
+      @include respond(screenMenu) {
+        font-size: 1.4rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 1.3rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.3rem;
+        padding: 1rem 1.2rem;
+        margin-bottom: 2rem;
+
+      }
+
+      i {
+        padding-left: 1rem;
+      }
+    }
+  }
+}

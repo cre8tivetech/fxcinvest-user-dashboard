@@ -26,9 +26,7 @@ const Nav = ({ menu }) => {
         setWidth(null);
       }
   }, [device.matches, menu]);
-  useEffect(() => {
-    console.log("re-rendering");
-  }, [memoizedValue]);
+  useEffect(() => {}, [memoizedValue]);
 
   return (
     <nav className="main-nav" style={{ width: width, display: display }}>
