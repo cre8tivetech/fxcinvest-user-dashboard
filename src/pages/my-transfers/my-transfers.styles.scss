@@ -1,3 +1,5 @@
+@import '../../themes/mixins.scss';
+
 .my-transfers {
   position: relative;
   min-height: 92vh;
@@ -10,6 +12,19 @@
   flex-direction: column;
   justify-content: center;
 
+
+  @include respond(screenMenu) {
+    padding-top: 7rem;
+  }
+
+  @include respond(tabPort) {
+    padding-top: 6rem;
+  }
+
+  @include respond(phone) {
+    width: 90%;
+  }
+
   &__title {
     width: 90%;
     margin-top: 5rem;
@@ -17,6 +32,20 @@
     font-size: 1.3rem;
     text-align: start;
     margin-bottom: 2rem;
+
+    @include respond(screenMenu) {
+      font-size: 1.1rem;
+    }
+
+    @include respond(tabPort) {
+      font-size: 0.9rem;
+      width: 95%;
+    }
+
+    @include respond(phone) {
+      font-size: 0.8rem;
+      width: 97%;
+    }
   }
 
   &__type {
@@ -24,25 +53,66 @@
     align-self: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    // flex-wrap: wrap;
+    justify-content: space-evenly;
     border: 2px solid var(--card-color1);
     margin-bottom: 5rem;
     padding: 2rem 0;
 
-    &>*{
+    @include respond(screenMenu) {
+      flex-wrap: wrap;
+
+      &>* {
+        margin-top: 1rem;
+      }
+    }
+
+    @include respond(tabPort) {
+      justify-content: space-evenly;
+      width: 95%;
+      padding-top: 1rem;
+
+      &--box3,
+      &--box4 {
+        margin-top: 1rem;
+      }
+    }
+
+    @include respond(phone) {
+      width: 97%;
+      font-size: 1rem;
+    }
+
+    &>* {
       display: flex;
       flex-direction: row;
       // justify-content: space-between;
       align-items: center;
 
-      &>*{
-        
+      &>* {
+
         &:not(:last-child) {
           font-size: 1.5rem;
           color: var(--tertiary-color);
           padding: 0 1rem;
+
+          @include respond(screenMenu) {
+            font-size: 1.3rem;
+            padding: 0 0.8rem;
+          }
+
+          @include respond(tabPort) {
+            font-size: 1.2rem;
+            padding: 0 0.7rem;
+          }
+
+          @include respond(phone) {
+            font-size: 1rem;
+            padding: 0 0.6rem;
+          }
         }
-        &:last-child { 
+
+        &:last-child {
           text-align: center;
 
           &:nth-child(2) {
@@ -51,26 +121,37 @@
             background-color: #ffffff;
             padding: 0.3rem 1rem;
             border: 2px solid var(--card-color1);
+
+            @include respond(phone) {
+              font-size: 1.3rem;
+            }
           }
         }
       }
+
       &:last-child {
         padding: 0.5rem 1rem;
         color: white;
         font-size: 1.3rem;
+
+        @include respond(phone) {
+          padding: 0.7rem 1rem;
+          font-size: 1rem;
+        }
 
         div {
           display: flex;
           flex-direction: row;
           align-items: baseline;
 
-          &>*{
+          &>* {
             padding: 0 0.3rem;
           }
         }
 
       }
     }
+
     &--box4 {
       background-color: var(--primary-color);
     }
@@ -86,12 +167,27 @@
     border: 2px solid var(--card-color1);
     padding: 2rem;
 
+    @include respond(tabPort) {
+      width: 95%;
+      padding: 1rem;
+    }
+
+    @include respond(phone) {
+      width: 97%;
+      padding: 0.7rem;
+    }
+
     &--btn {
       color: white;
       padding: 1rem 2rem;
       margin-top: 1.5rem;
       font-size: 1.3rem;
       background-color: var(--primary-color);
+
+      @include respond(phone) {
+        padding: 0.7rem 1rem;
+        font-size: 1rem;
+      }
     }
 
     &:not(:nth-of-type(6)) {
@@ -100,10 +196,39 @@
 
     h1 {
       font-size: 2rem;
+
+
+      @include respond(screenMenu) {
+        font-size: 1.8rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 1.6rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.5rem;
+      }
     }
+
     p {
       font-size: 1.3rem;
       color: var(--tertiary-color);
+      text-align: start;
+
+      @include respond(screenMenu) {
+        font-size: 1.1rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 0.9rem;
+        width: 95%;
+      }
+
+      @include respond(phone) {
+        font-size: 0.8rem;
+        width: 97%;
+      }
     }
   }
 }

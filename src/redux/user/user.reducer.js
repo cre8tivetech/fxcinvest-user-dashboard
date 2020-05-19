@@ -1,0 +1,113 @@
+import UserActionTypes from "./user.types";
+
+const INITIAL_STATE = {
+  success: null,
+  error: null,
+  isLoading: null,
+  token: null,
+  currentUser: null,
+};
+
+const userReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    //Either any of the cases
+    case UserActionTypes.GO_TO_DASHBOARD:
+      return {
+        ...state,
+        // isLoading: true,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.SET_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.SET_MESSAGE:
+      return {
+        ...state,
+        message: action.payload,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
+        message: null,
+        error: null,
+        success: null,
+        paymentData: null,
+      };
+    case UserActionTypes.FORGET_PASSWORD_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.FORGET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.SIGN_UP_START:
+      return {
+        ...state,
+        isLoading: true,
+        currentUser: null,
+        token: null,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        success: action.payload,
+        error: null,
+      };
+    case UserActionTypes.SIGN_IN_BY_TOKEN_START:
+      return {
+        ...state,
+        success: null,
+        error: null,
+        isLoading: true,
+        currentUser: null,
+        token: null,
+      };
+    case UserActionTypes.SIGN_IN_BY_TOKEN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        currentUser: action.payload,
+        error: null,
+      };
+    case UserActionTypes.SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        currentUser: null,
+        subscription: null,
+        downloads: null,
+        token: null,
+        error: null,
+      };
+    case UserActionTypes.SIGN_IN_BY_TOKEN_FAILURE:
+    case UserActionTypes.SIGN_OUT_FAILURE:
+    case UserActionTypes.SIGN_UP_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export default userReducer;

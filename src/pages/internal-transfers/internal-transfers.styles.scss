@@ -1,4 +1,6 @@
-.internal-transfers{
+@import '../../themes/mixins.scss';
+
+.internal-transfers {
   position: relative;
   min-height: 92vh;
   padding-top: 8rem;
@@ -6,17 +8,48 @@
   display: flex;
   margin-left: auto;
   flex-direction: column;
-  justify-content: flex-start;
-  color: var(--tertiary-color);
+  justify-content: center;
+  color: var(--primary-color);
+
+  // &>* {
+  //   width: 90%;
+  // }
+
+
+  @include respond(screenMenu) {
+    padding-top: 7rem;
+  }
+
+  @include respond(tabPort) {
+    padding-top: 6rem;
+  }
+
+  @include respond(phone) {
+    width: 85%;
+  }
 
   &__title {
     width: 90%;
-    margin-top: 5rem;
+    margin: 5rem 0 4rem 0;
     align-self: center;
     font-size: 1.3rem;
     text-align: start;
-    margin-bottom: 4rem;
     color: var(--primary-color);
+
+    @include respond(screenMenu) {
+      margin: 4rem 0 3rem 0;
+      font-size: 1.1rem;
+    }
+
+    @include respond(tabPort) {
+      margin: 3rem 0 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    @include respond(phone) {
+      margin: 2rem 0 1rem 0;
+      font-size: 0.8rem;
+    }
   }
 
   &__img {
@@ -25,9 +58,10 @@
     align-items: flex-start;
     display: flex;
     flex-direction: row;
-    // img{
-      // margin-right: auto;
-    // }
+
+    @include respond(tabPort) {
+      // width: 95%;
+    }
   }
 
   &__form {
@@ -38,13 +72,36 @@
     align-items: flex-start;
     margin-top: 3rem;
 
+    // @include respond(tabPort) {
+    //   width: 95%;
+    // }
+
     &--box {
       font-size: 1.5rem;
+
+      @include respond(screenMenu) {
+        font-size: 1.4rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 1.2rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.1rem;
+      }
+
       &__title {
         display: flex;
         flex-direction: row;
         margin-bottom: 1rem;
         align-items: center;
+        color: var(--tertiary-color);
+
+        @include respond(phone) {
+          width: 90%;
+        }
+
         div {
           margin-left: 0.5rem;
           background-color: var(--tertiary-color1);
@@ -59,21 +116,38 @@
           color: white;
         }
       }
+
       input {
         font-size: 1.5rem;
-        height:3rem;
+        height: 3rem;
         width: 30rem;
         border: 0.1rem solid var(--card-color2);
         padding: 2rem;
         margin-bottom: 3rem;
+
+        @include respond(screenMenu) {
+          font-size: 1.4rem;
+          width: 27rem;
+        }
+
+        @include respond(tabPort) {
+          font-size: 1.3rem;
+          width: 26rem;
+        }
+
+        @include respond(phone) {
+          font-size: 1.2rem;
+          width: 23rem;
+        }
       }
+
       ::placeholder {
         /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: var(--accordion-color1);
         opacity: 1;
         /* Firefox */
       }
-      
+
     }
   }
 
@@ -84,7 +158,8 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 1rem;
-    p{
+
+    p {
       text-align: start;
       align-content: flex-start;
       width: 80%;
@@ -97,10 +172,23 @@
     align-self: center;
     margin: 3rem 0 5rem 0;
     color: white;
-    p{
+
+    @include respond(tabPort) {
+      margin: 2rem 0 3rem 0;
+    }
+
+    p {
       font-size: 1.2rem;
       padding: 0.8rem 1.5rem;
       background-color: var(--primary-color);
+
+      @include respond(screenMenu) {
+        font-size: 1.1rem;
+      }
+
+      @include respond(tabPort) {
+        font-size: 1rem;
+      }
     }
   }
 }

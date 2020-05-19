@@ -1,3 +1,5 @@
+@import '../../themes/mixins.scss';
+
 .footer {
   position: absolute;
   background-color: var(--primary-color);
@@ -15,9 +17,21 @@
     h1 {
       font-size: 1.6rem;
       text-transform: uppercase;
+      @include respond(tabLand) {
+        font-size: 1.5rem;
+      }
+      @include respond(tabPort) {
+        font-size: 1.4rem;
+      }
     }
     p {
       font-size: 1.2rem;
+      @include respond(tabLand) {
+        font-size: 1.1rem;
+      }
+      @include respond(tabPort) {
+        font-size: 1rem;
+      }
     }
   }
 }

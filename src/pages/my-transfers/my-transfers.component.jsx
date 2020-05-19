@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import "./my-transfers.styles.scss";
 import Message from "../../components/message/message.component";
 import Layout from "../../components/layout/layout.component";
+import { connect } from "react-redux";
+import { selectMenu } from "../../redux/ui/ui.selector";
+import { createStructuredSelector } from "reselect";
 
-const MyTransfers = () => {
+const MyTransfers = ({ menu }) => {
   window.scroll(0, 0);
+  const [width, setWidth] = useState();
+  const device = window.matchMedia("(max-width: 600px)");
+  const memorizedValue = useMemo(() => {
+    if (menu) device.matches ? setWidth("100%") : setWidth("93%");
+    if (!menu)
+      if (device.matches) {
+        setWidth("90%");
+      } else {
+        setWidth(null);
+      }
+  }, [device.matches, menu]);
+  useEffect(() => {}, [memorizedValue]);
   return (
     <Layout>
-      <div className="my-transfers">
+      <div className="my-transfers" style={{ width: width }}>
         <Message />
         <div className="my-transfers__title">
           <h1>My Transfers</h1>
@@ -56,4 +71,7 @@ const MyTransfers = () => {
     </Layout>
   );
 };
-export default MyTransfers;
+const mapStateToProps = createStructuredSelector({
+  menu: selectMenu,
+});
+export default connect(mapStateToProps)(MyTransfers);
