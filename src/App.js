@@ -9,7 +9,6 @@ import InternalTransfers from "./pages/internal-transfers/internal-transfers.com
 import Investment from "./pages/investment/investment.component";
 import Referrals from "./pages/referrals/referrals.component";
 import MyProfile from "./pages/my-profile/my-profile.component";
-import AuthLoader from "./components/auth/auth-loader.component";
 import Error404 from "./pages/Error/error-404.component";
 import AuthSpinner from "./components/auth/auth-spinner.component";
 import { connect } from "react-redux";

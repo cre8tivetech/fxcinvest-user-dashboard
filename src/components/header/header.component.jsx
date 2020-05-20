@@ -36,10 +36,7 @@ const Header = ({ signOutStart, setMenu, menu, user, isAuth }) => {
   useEffect(() => {
     if (!isAuth) {
       setLogout("Logout");
-      window.location.assign(
-        // `http://localhost:3000/auth/log-out-was-successful`
-        `https://fxcinvest.netlify.app/auth/log-out-was-successful`
-      );
+      window.location.assign(process.env.REACT_APP_HOME_URL);
     }
   }, [isAuth, memorizedValue]);
 
