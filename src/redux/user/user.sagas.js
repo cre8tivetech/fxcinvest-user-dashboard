@@ -188,6 +188,7 @@ export function* onSignUpStart() {
 }
 
 // export function* onSignUpSuccess() {
+
 //   yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
 // }
 
