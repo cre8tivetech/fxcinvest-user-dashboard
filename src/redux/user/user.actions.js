@@ -15,6 +15,15 @@ export const signInByTokenFailure = (error) => ({
   payload: error,
 });
 
+export const checkAuth = () => ({
+  type: UserActionTypes.CHECK_AUTH,
+});
+
+export const setPopUp = (messages) => ({
+  type: UserActionTypes.SET_POP_UP,
+  payload: messages,
+});
+
 export const goToDashboard = () => ({
   type: UserActionTypes.GO_TO_DASHBOARD,
 });

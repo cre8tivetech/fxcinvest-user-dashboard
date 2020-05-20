@@ -4,8 +4,10 @@ const INITIAL_STATE = {
   success: null,
   error: null,
   isLoading: null,
+  isAuth: null,
   token: null,
   currentUser: null,
+  popUp: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -18,10 +20,24 @@ const userReducer = (state = INITIAL_STATE, action) => {
         error: null,
         success: null,
       };
+    case UserActionTypes.CHECK_AUTH:
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+        success: null,
+      };
     case UserActionTypes.SET_TOKEN:
       return {
         ...state,
         token: action.payload,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.SET_POP_UP:
+      return {
+        ...state,
+        popUp: action.payload,
         error: null,
         success: null,
       };
@@ -36,10 +52,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoading: action.payload,
-        message: null,
+        // message: null,
         error: null,
         success: null,
-        paymentData: null,
+        // paymentData: null,
       };
     case UserActionTypes.FORGET_PASSWORD_START:
       return {
@@ -84,6 +100,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoading: false,
+        isAuth: true,
         currentUser: action.payload,
         error: null,
       };
@@ -91,6 +108,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoading: false,
+        isAuth: false,
         currentUser: null,
         subscription: null,
         downloads: null,

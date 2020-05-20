@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 import "./auth.styles.scss";
 import Logo from "../../assets/img/Icon.svg";
-import { useParams, useHistory } from "react-router-dom";
+import {
+  useParams,
+  useHistory,
+  useLocation,
+  withRouter,
+  matchPath,
+} from "react-router-dom";
 import { signInByTokenStart } from "../../redux/user/user.actions";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -9,40 +15,52 @@ import { selectCurrentUser } from "../../redux/user/user.selector";
 import { useCallback } from "react";
 
 const AuthLoader = ({ signInByTokenStart, currentUser }) => {
-  const { data } = useParams();
-  const result = data.split("-");
-  const data1 = result[0];
-  const data2 = result[1];
-  const uid = window.atob(data1);
-  const token = window.atob(data2);
+  const location = useLocation();
   const history = useHistory();
+  const authLoader = !!matchPath(location.pathname, "/auth/:data");
   // const [text, setText] = useState("Verifying user, Please wait....");
-
-  const signIn = useCallback(() => {
-    signInByTokenStart(uid, token);
-  }, [signInByTokenStart, uid, token]);
+  const signIn = useCallback(
+    (uid, token) => {
+      signInByTokenStart(uid, token);
+    },
+    [signInByTokenStart]
+  );
   useEffect(() => {
-    if (!currentUser) data && signIn();
-    if (currentUser)
-      setTimeout(() => {
-        // setText("Redirecting to Your Dashboard.....");
-        history.push("/");
-      }, 6000);
-    // currentUser && console.log(currentUser);
-  }, [currentUser, data, history, signIn]);
+    if (authLoader) {
+      if (location) {
+        const paramData = location.pathname.split("/")[2];
+        const result = paramData.split("-");
+        const data1 = result[0];
+        const data2 = result[1];
+        const uid = window.atob(data1);
+        const token = window.atob(data2);
+        if (!currentUser) paramData && signIn(uid, token);
+      }
+
+      if (currentUser) {
+        console.log("Loggedin");
+        setTimeout(() => {
+          // setText("Redirecting to Your Dashboard.....");
+          history.push("/");
+        }, 6000);
+        currentUser && console.log(currentUser);
+      }
+    }
+    // console.log(data);
+  }, [authLoader, currentUser, history, location, signIn]);
 
   return (
     <div className="auth-loader">
       <div>
         <img className="image" src={Logo} alt="" />
-        <div className="texts">
+        {/* <div className="texts">
           <h1>FCXINVEST</h1>
-        </div>
+        </div> */}
       </div>
       {(function () {
         let rows = [];
         for (let i = 0; i < 100; i++) {
-          rows.push(<div className="particle"></div>);
+          rows.push(<div key={i} className="particle"></div>);
         }
         return rows;
       })()}
@@ -58,4 +76,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(signInByTokenStart({ uid, token })),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthLoader);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(AuthLoader)
+);

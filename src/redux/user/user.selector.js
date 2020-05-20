@@ -7,7 +7,10 @@ export const selectCurrentUser = createSelector(
   (user) => user.currentUser
 );
 
+export const selectPopUp = createSelector([selectUser], (user) => user.popUp);
+
 export const selectToken = createSelector([selectUser], (user) => user.token);
+export const selectIsAuth = createSelector([selectUser], (user) => user.isAuth);
 
 export const selectMessage = createSelector(
   [selectUser],
