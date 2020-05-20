@@ -27,8 +27,9 @@ const AuthSpinner = ({ currentUser, setLoading }) => {
       } else {
         setTimeout(() => {
           window.location.assign(
+            process.env.REACT_APP_HOME_URL
             // `http://localhost:3000/auth/log-out-was-successful`
-            `https://fxcinvest.netlify.app/auth/log-out-was-successful`
+            // `https://fxcinvest.netlify.app/auth/log-out-was-successful`
           );
         }, 6000);
       }
