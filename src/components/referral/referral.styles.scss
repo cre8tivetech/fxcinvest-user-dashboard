@@ -120,8 +120,13 @@
     &__form {
       display: flex;
       flex-direction: row;
+      color: var(--tertiary-color);
       //  width: 60%;
 
+      *::selection {
+        background-color: white;
+        color: var(--tertiary-color);
+      }
 
       input {
         height: 100%;

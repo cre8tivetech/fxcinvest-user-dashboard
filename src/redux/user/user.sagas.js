@@ -134,14 +134,14 @@ export function* isResetPassword({ payload: { token, new_password } }) {
   }
 }
 
-// export function* signOut() {
-//   try {
-//     yield delay(3000);
-//     yield put(signOutSuccess());
-//   } catch (error) {
-//     yield put(signOutFailure(error));
-//   }
-// }
+export function* signOut() {
+  try {
+    yield delay(3000);
+    yield put(signOutSuccess());
+  } catch (error) {
+    yield put(signOutFailure(error));
+  }
+}
 
 export function* signUp({ payload: { userName, email, password } }) {
   try {
@@ -180,7 +180,7 @@ export function* onResetPassword() {
 }
 
 export function* onSignOutStart() {
-  // yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
+  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
 export function* onSignUpStart() {

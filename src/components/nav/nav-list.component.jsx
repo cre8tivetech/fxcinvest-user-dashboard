@@ -1,14 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import "./nav.styles.scss";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectMenu } from "../../redux/ui/ui.selector";
+import { signOutStart } from "../../redux/user/user.actions";
+import { selectIsAuth } from "../../redux/user/user.selector";
 
-const NavList = ({ type, menu }) => {
+const NavList = ({ isAuth, menu, signOutStart }) => {
   // useEffect(() => {}, [menu]);
+  const [logout, setLogout] = useState("Logout");
+  const signOut = () => {
+    setLogout("Logging out...");
+    signOutStart();
+  };
 
+  useEffect(() => {
+    if (!isAuth) {
+      setLogout("Logout");
+      window.location.assign(
+        `http://localhost:3000/auth/log-out-was-successful`
+      );
+    }
+  }, [isAuth]);
   // const mainNav = (
   return (
     <nav className="main-nav__list">
@@ -97,69 +112,29 @@ const NavList = ({ type, menu }) => {
             {!menu && <p>My Profile</p>}
           </li>
         </NavLink>
-        <Link activeclassname="active" className="list" to="">
+        <div
+          onClick={() => signOut()}
+          activeclassname="active"
+          className="list"
+        >
           <li
             style={
               menu ? { justifyContent: "center", padding: "1rem 0 1rem 0" } : {}
             }
           >
             <i className="fad fa-sign-out"></i>
-            {!menu && <p>Logout</p>}
+            {!menu && <p>{logout}</p>}
           </li>
-        </Link>
+        </div>
       </ul>
     </nav>
   );
-
-  // const mobileNav = (
-  //   <ul>
-  //     <li>
-  //       <Link className="list" to="/">
-  //         Home
-  //       </Link>
-  //     </li>
-
-  //     <li>
-  //       <Link className="list" to="/about-us">
-  //         About Us
-  //       </Link>
-  //     </li>
-
-  //     <li>
-  //       <Link className="list" to="/faq">
-  //         FAQ
-  //       </Link>
-  //     </li>
-
-  //     <li>
-  //       <Link className="list" to="/investment-plans">
-  //         Investment Plans
-  //       </Link>
-  //     </li>
-
-  //     <li>
-  //       <Link className="list" to="/contact-us">
-  //         Contact Us
-  //       </Link>
-  //     </li>
-
-  //     <li>
-  //       <Link className="list" to="/privacy-policy">
-  //         Privacy Policy
-  //       </Link>
-  //     </li>
-  //   </ul>
-  // );
-
-  {
-    /* return (
-    <nav className={`${type}-nav__list`}>
-      {type === "main" ? mainNav : mobileNav}
-    </nav>
-  ); */
-  }
 };
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart()),
+});
 const mapStateToProps = createStructuredSelector({
   menu: selectMenu,
+  isAuth: selectIsAuth,
 });
-export default connect(mapStateToProps)(NavList);
+export default connect(mapStateToProps, mapDispatchToProps)(NavList);

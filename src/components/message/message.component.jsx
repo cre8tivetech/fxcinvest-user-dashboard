@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./message.styles.scss";
 
 const Message = () => {
+  const [msgDisplay, setMsgDisplay] = useState(null);
+  const close = () => {
+    setMsgDisplay("none");
+  };
+
   return (
-    <div className="message">
-      <span className="message--close">&times;</span>
+    <div className="message" style={{ display: msgDisplay }}>
+      <span className="message--close" onClick={() => close()}>
+        &times;
+      </span>
       <h1>Welecome to MyFXCINVEST - your personal client area.</h1>
       <p>Your MyFXCINVEST User name: joshmatparrot</p>
       <p>

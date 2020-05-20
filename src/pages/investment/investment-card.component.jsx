@@ -20,8 +20,8 @@ const InvestmentCard = () => {
             </div>
           </div>
           <div className="investment__cards--box__content">
-            {item.content.map((list) => (
-              <div className="investment__cards--box__content--list">
+            {item.content.map((list, i) => (
+              <div key={i} className="investment__cards--box__content--list">
                 <i className="fa fa-check"></i>
                 <p>{list}</p>
               </div>

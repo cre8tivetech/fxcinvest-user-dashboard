@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./referral.styles.scss";
+import { connect } from "react-redux";
+import { selectCurrentUser } from "../../redux/user/user.selector";
+import { createStructuredSelector } from "reselect";
 
-const Referral = () => {
+const Referral = ({ user }) => {
+  const [copyText, setCopyText] = useState("copy");
+  const [copySuccess, setCopySuccess] = useState("");
+  const textAreaRef = useRef(null);
+
+  const copyToClipboard = (e) => {
+    textAreaRef.current.select();
+    document.execCommand("copy");
+    // This is just personal preference.
+    // I prefer to not show the the whole text area selected.
+    e.target.focus();
+    setCopyText("");
+    setCopySuccess("Copied!");
+    setTimeout(() => {
+      setCopyText("Copy");
+      setCopySuccess(" ");
+    }, 2000);
+  };
   return (
     <div className="referral">
       <div className="referral--top">
@@ -14,15 +34,21 @@ const Referral = () => {
         <p>Your Referral Link: </p>
         <div className="referral--bottom__form">
           <input
-            type="url"
-            name=""
-            id=""
-            placeholder="https://fxcinvest.com/register/?ref=joshmatparrot"
+            ref={textAreaRef}
+            value={"https://fxcinvest.com/register/?ref=" + user.username}
           />
-          <div className="btn ripple1">Copy</div>
+
+          <div className="btn ripple1" onClick={copyToClipboard}>
+            {copyText}
+            {copySuccess}
+          </div>
+          {/* <div>Copy</div> */}
         </div>
       </div>
     </div>
   );
 };
-export default Referral;
+const mapStateToProps = createStructuredSelector({
+  user: selectCurrentUser,
+});
+export default connect(mapStateToProps)(Referral);
