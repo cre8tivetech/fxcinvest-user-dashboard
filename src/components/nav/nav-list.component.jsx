@@ -20,7 +20,8 @@ const NavList = ({ isAuth, menu, signOutStart }) => {
     if (!isAuth) {
       setLogout("Logout");
       window.location.assign(
-        `http://localhost:3000/auth/log-out-was-successful`
+        // `http://localhost:3000/auth/log-out-was-successful`
+        `https://fxcinvest.netlify.app/auth/log-out-was-successful`
       );
     }
   }, [isAuth]);
