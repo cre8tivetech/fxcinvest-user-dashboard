@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   token: null,
   currentUser: null,
   popUp: null,
+  bitCoinInvoice: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +27,37 @@ const userReducer = (state = INITIAL_STATE, action) => {
         isLoading: true,
         error: null,
         success: null,
+        popUp: null,
+      };
+
+    case UserActionTypes.FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.payload,
+        error: null,
+        success: null,
+      };
+
+    case UserActionTypes.CHECK_USER_SESSION:
+      return {
+        ...state,
+        error: null,
+        success: null,
+      };
+
+    case UserActionTypes.CREATE_BITCOIN_INVOICE_SUCCESS:
+      return {
+        ...state,
+        bitCoinInvoice: action.payload,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.EXPIRE_BITCOIN_INVOICE:
+      return {
+        ...state,
+        bitCoinInvoice: null,
+        error: null,
+        success: null,
       };
     case UserActionTypes.SET_TOKEN:
       return {
@@ -33,6 +65,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         token: action.payload,
         error: null,
         success: null,
+        popUp: null,
       };
     case UserActionTypes.SET_POP_UP:
       return {

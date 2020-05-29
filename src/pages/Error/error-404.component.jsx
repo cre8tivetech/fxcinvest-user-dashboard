@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from "react";
-import Layout from "../../components/layout/layout.component";
 import Img404 from "../../assets/img/404.png";
 import "./error.styles.scss";
 import { Link } from "react-router-dom";
@@ -22,21 +21,19 @@ const Error404 = ({ menu }) => {
   }, [device.matches, menu]);
   useEffect(() => {}, [memorizedValue]);
   return (
-    <Layout>
-      <div className="error-404" style={{ width: width }}>
-        <div className="error-404__contents">
-          <img src={Img404} alt="" />
-          <h1>404</h1>
-          <h4>Page not found</h4>
-          <p>Sorry, we couldn't find the page you are looking for</p>
-          <div className="error-404__contents--btn ripple1">
-            <Link to="/">
-              Go to dashboard <i className="fas fa-tachometer-alt-fast"></i>
-            </Link>
-          </div>
+    <div className="error-404" style={{ width: width }}>
+      <div className="error-404__contents">
+        <img src={Img404} alt="" />
+        <h1>404</h1>
+        <h4>Page not found</h4>
+        <p>Sorry, we couldn't find the page you are looking for</p>
+        <div className="error-404__contents--btn ripple1">
+          <Link to="/">
+            Go to dashboard <i className="fas fa-tachometer-alt-fast"></i>
+          </Link>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

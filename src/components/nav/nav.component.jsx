@@ -16,8 +16,7 @@ const Nav = ({ menu, user }) => {
   const [width, setWidth] = useState();
   const [display, setDisplay] = useState();
   const device = window.matchMedia("(max-width: 600px)");
-
-  const memorizedValue = useMemo(() => {
+  useMemo(() => {
     if (menu) device.matches ? setDisplay("none") : setWidth("7%");
     if (!menu)
       if (device.matches) {
@@ -27,7 +26,10 @@ const Nav = ({ menu, user }) => {
         setWidth(null);
       }
   }, [device.matches, menu]);
-  useEffect(() => {}, [memorizedValue]);
+
+  const goHome = () => {
+    window.location.assign(process.env.REACT_APP_HOME_URL);
+  };
 
   const capitalize = (s) => {
     if (typeof s !== "string") return "";
@@ -38,7 +40,7 @@ const Nav = ({ menu, user }) => {
     <nav className="main-nav" style={{ width: width, display: display }}>
       {!width && (
         <div className="main-nav__top">
-          <img src={Logo} alt="" />
+          <img onClick={() => goHome()} src={Logo} alt="" />
           {/* <p style={width ? { color: "red" } : { color: "blue" }}>Good</p> */}
         </div>
       )}

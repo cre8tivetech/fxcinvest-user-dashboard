@@ -7,6 +7,7 @@ import "./themes/button.styles.scss";
 import "./themes/lines.styles.scss";
 import "./themes/tooltip.styles.scss";
 import "./themes/particles.styles.scss";
+import "./themes/breadcrumb.styles.scss";
 import "./themes/mixins.scss";
 // import "./assets/fonts/font-awesome-pro-5.13.0-web/css/all.min.css";
 import "./assets/fonts/font-awesome-pro-5.13.0-web/css/all.min.css";
@@ -18,11 +19,9 @@ import { PersistGate } from "redux-persist/integration/react";
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <React.StrictMode>
-        <PersistGate persistor={persistor}>
-          <App />
-        </PersistGate>
-      </React.StrictMode>
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

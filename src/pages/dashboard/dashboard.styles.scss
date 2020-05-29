@@ -1,7 +1,7 @@
 @import '../../themes/mixins.scss';
 
 .dashboard {
-  min-height: 92vh;
+  min-height: 92.1vh;
   position: relative;
   padding-top: 8rem;
   padding-bottom: 12rem;
@@ -150,10 +150,18 @@
 
         &--1 {
           background-color: var(--primary-color);
+
+          a {
+            text-decoration: none;
+          }
         }
 
         &--2 {
           background-color: var(--secondary-color);
+
+          a {
+            text-decoration: none;
+          }
         }
       }
 

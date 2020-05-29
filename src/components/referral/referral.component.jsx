@@ -35,9 +35,9 @@ const Referral = ({ user }) => {
         <div className="referral--bottom__form">
           <input
             ref={textAreaRef}
+            onChange={() => null}
             value={"https://fxcinvest.com/register/?ref=" + user.username}
           />
-
           <div className="btn ripple1" onClick={copyToClipboard}>
             {copyText}
             {copySuccess}

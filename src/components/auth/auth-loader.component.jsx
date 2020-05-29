@@ -8,13 +8,13 @@ import {
   withRouter,
   matchPath,
 } from "react-router-dom";
-import { signInByTokenStart } from "../../redux/user/user.actions";
+import { signInByTokenStart, setLoading } from "../../redux/user/user.actions";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import { useCallback } from "react";
 
-const AuthLoader = ({ signInByTokenStart, currentUser }) => {
+const AuthLoader = ({ signInByTokenStart, currentUser, setLoading }) => {
   const location = useLocation();
   const history = useHistory();
   const authLoader = !!matchPath(location.pathname, "/auth/:data");
@@ -38,16 +38,13 @@ const AuthLoader = ({ signInByTokenStart, currentUser }) => {
       }
 
       if (currentUser) {
-        console.log("Loggedin");
-        setTimeout(() => {
-          // setText("Redirecting to Your Dashboard.....");
-          history.push("/");
-        }, 6000);
+        // setText("Redirecting to Your Dashboard.....");
+        history.push("/");
         currentUser && console.log(currentUser);
       }
     }
     // console.log(data);
-  }, [authLoader, currentUser, history, location, signIn]);
+  }, [authLoader, currentUser, history, location, setLoading, signIn]);
 
   return (
     <div className="auth-loader">
@@ -74,6 +71,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   signInByTokenStart: (uid, token) =>
     dispatch(signInByTokenStart({ uid, token })),
+  setLoading: (condition) => dispatch(setLoading(condition)),
 });
 
 export default withRouter(

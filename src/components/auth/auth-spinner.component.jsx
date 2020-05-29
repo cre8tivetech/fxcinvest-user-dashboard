@@ -22,18 +22,16 @@ const AuthSpinner = ({ currentUser, setLoading }) => {
 
   useEffect(() => {
     if (!currentUser) {
-      if (authLoader) {
-        setTimeout(() => {}, 5000);
-      } else {
+      if (!authLoader) {
         setTimeout(() => {
           window.location.assign(process.env.REACT_APP_HOME_URL);
-        }, 6000);
+        }, 2000);
       }
     }
     if (currentUser)
       setTimeout(() => {
         setLoading(false);
-      }, 3000);
+      }, 2000);
     // currentUser && console.log(currentUser);
   }, [
     authLoader,
@@ -69,7 +67,7 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 const mapDispatchToProps = (dispatch) => ({
-  setLoading: (conditon) => dispatch(setLoading(conditon)),
+  setLoading: (condition) => dispatch(setLoading(condition)),
 });
 
 export default withRouter(

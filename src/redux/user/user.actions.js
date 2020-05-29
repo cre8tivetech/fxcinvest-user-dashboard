@@ -15,6 +15,19 @@ export const signInByTokenFailure = (error) => ({
   payload: error,
 });
 
+export const fetchUserStart = () => ({
+  type: UserActionTypes.FETCH_USER_START,
+});
+
+export const fetchUserSuccess = (data) => ({
+  type: UserActionTypes.FETCH_USER_SUCCESS,
+  payload: data,
+});
+
+export const checkUserSession = () => ({
+  type: UserActionTypes.CHECK_USER_SESSION,
+});
+
 export const checkAuth = () => ({
   type: UserActionTypes.CHECK_AUTH,
 });
@@ -24,8 +37,27 @@ export const setPopUp = (messages) => ({
   payload: messages,
 });
 
+export const expireBitCoinInvoice = () => ({
+  type: UserActionTypes.EXPIRE_BITCOIN_INVOICE,
+});
+
 export const goToDashboard = () => ({
   type: UserActionTypes.GO_TO_DASHBOARD,
+});
+
+export const transferStart = (data) => ({
+  type: UserActionTypes.TRANSFER_START,
+  payload: data,
+});
+
+export const createBitCoinInvoiceStart = (amount) => ({
+  type: UserActionTypes.CREATE_BITCOIN_INVOICE_START,
+  payload: amount,
+});
+
+export const createBitCoinInvoiceSuccess = (invoice) => ({
+  type: UserActionTypes.CREATE_BITCOIN_INVOICE_SUCCESS,
+  payload: invoice,
 });
 
 export const resendConfirmEmailStart = () => ({
