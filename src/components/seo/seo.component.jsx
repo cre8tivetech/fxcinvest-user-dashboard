@@ -1,11 +1,10 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import { Helmet } from "react-helmet";
 
 const SEO = ({ title, lang }) => {
-  const metaDescription = 'A forex and crypto trading investment web app'
-  const siteTitle = 'Fxcinvest';
-  const author = '@cre8tive_tech';
-  console.log('lang: ',lang);
+  const metaDescription = "A forex and crypto trading investment web app";
+  const siteTitle = "Fxcinvest";
+  const author = "@cre8tive_tech";
 
   return (
     <Helmet
@@ -46,7 +45,7 @@ const SEO = ({ title, lang }) => {
         },
       ]}
     />
-  )
-}
+  );
+};
 
 export default SEO;

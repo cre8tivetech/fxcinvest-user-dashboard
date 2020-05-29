@@ -39,7 +39,7 @@ export const InvestmentCardData = [
     color: "var(--tertiary-color)",
     content: [
       "Maturity 30 days",
-      "Minimum Investment $300",
+      "Minimum Investment $3000",
       "Maximum Investment Unlimited",
       "Enhanced Security",
       "Wallet Integration",

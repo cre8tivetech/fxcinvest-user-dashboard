@@ -123,10 +123,10 @@
       color: var(--tertiary-color);
       //  width: 60%;
 
-      *::selection {
-        background-color: white;
-        color: var(--tertiary-color);
-      }
+      // *::selection {
+      //   background-color: var(--card-color2);
+      //   color: var(--tertiary-color);
+      // }
 
       input {
         height: 100%;

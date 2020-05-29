@@ -19,10 +19,17 @@ import {
   signUpSuccess,
   forgetPasswordSuccess,
   setToken,
+  setPopUp,
+  createBitCoinInvoiceStart,
+  createBitCoinInvoiceSuccess,
+  fetchUserSuccess,
 } from "./user.actions";
+import { createBitcoinInvoiceApi } from "../../api/payment";
+import { fetchUserApi, transferApi } from "../../api/api";
 
 const userToken = (state) => state.user.token.key;
 const userExpire = (state) => state.user.token.expire;
+const userId = (state) => state.user.currentUser.id;
 
 export function* getSnapshotFromUserAuth(userAuth) {
   try {
@@ -69,7 +76,6 @@ export function* signByToken({ payload: { uid, token } }) {
       return response.data;
     });
     if (result) {
-      console.log(result);
       const date = new Date();
       const expireDate = date.getTime() + result.expires_in * 1000;
       // console.log(d2);
@@ -91,16 +97,38 @@ export function* signByToken({ payload: { uid, token } }) {
   }
 }
 
+export function* isFetchUser() {
+  const token = yield select(userToken);
+  const uid = yield select(userId);
+  try {
+    const result = yield fetchUserApi(token, uid).then(function (response) {
+      return response.data;
+    });
+    // console.log(result);
+    if (result) {
+      yield put(fetchUserSuccess(result));
+    }
+  } catch (error) {
+    yield put(
+      signInByTokenFailure(
+        error.response
+          ? error.response.data.detail || error.response.data.error
+          : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
+      )
+    );
+  }
+}
+
 export function* isUserAuthenticated() {
   try {
     const expire = yield select(userExpire);
     if (new Date(expire) <= new Date(Date.now())) {
-      const message = "Login Session as expired, 🙏 Please re-login!!";
-      yield put(setMessage({ type: "error", message: message }));
+      const message = "Login Session has expired, 🙏 Please re-login!!";
+      yield put(setPopUp({ type: "error", message: message }));
       yield delay(3000);
       yield put(signOutStart());
-      yield delay(2000);
-      yield put(setMessage(null));
+      yield delay(5000);
+      yield put(setPopUp(null));
     }
   } catch (error) {
     yield delay(5000);
@@ -163,12 +191,82 @@ export function* signUp({ payload: { userName, email, password } }) {
   }
 }
 
+export function* isCreateBitCoinInvoice({ payload: amount }) {
+  const token = yield select(userToken);
+  try {
+    const result = yield createBitcoinInvoiceApi(token, amount).then(function (
+      response
+    ) {
+      return response.data;
+    });
+    if (result) {
+      let d = new Date();
+      let v = new Date();
+      v.setMinutes(d.getMinutes() + 15);
+      yield put(
+        createBitCoinInvoiceSuccess({ ...result.data, amount, expire: v })
+      );
+      yield put(setPopUp({ type: result.status, message: result.message }));
+      yield delay(8000);
+      yield put(setPopUp(null));
+    }
+  } catch (error) {
+    yield put(
+      signUpFailure(
+        error.response
+          ? error.response.data.message || error.response.data.error
+          : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
+      )
+    );
+  }
+}
+
+export function* isTransfer({ payload: { amount, username } }) {
+  const token = yield select(userToken);
+  try {
+    const result = yield transferApi(token, amount, username).then(function (
+      response
+    ) {
+      return response.data;
+    });
+    if (result) {
+      console.log(result);
+      yield put(setPopUp({ type: result.status, message: result.message }));
+      yield delay(8000);
+      yield put(setPopUp(null));
+    }
+  } catch (error) {
+    yield put(
+      signUpFailure(
+        error.response
+          ? error.response.data.message || error.response.data.error
+          : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
+      )
+    );
+  }
+}
+
 // export function* signInAfterSignUp({ payload: { user, additionalData } }) {
 //   yield getSnapshotFromUserAuth(user, additionalData);
 // }
 
 export function* onCheckUserSession() {
   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
+}
+
+export function* onFetchUser() {
+  yield takeLatest(UserActionTypes.FETCH_USER_START, isFetchUser);
+}
+
+export function* onCreateBitCoinInvoiceStart() {
+  yield takeLatest(
+    UserActionTypes.CREATE_BITCOIN_INVOICE_START,
+    isCreateBitCoinInvoice
+  );
+}
+
+export function* onTransferStart() {
+  yield takeLatest(UserActionTypes.TRANSFER_START, isTransfer);
 }
 
 export function* onSignInByTokenStart() {
@@ -194,6 +292,10 @@ export function* onSignUpStart() {
 
 export function* userSagas() {
   yield all([
+    call(onCheckUserSession),
+    call(onFetchUser),
+    call(onCreateBitCoinInvoiceStart),
+    call(onTransferStart),
     call(onSignInByTokenStart),
     call(onResetPassword),
     call(onSignOutStart),

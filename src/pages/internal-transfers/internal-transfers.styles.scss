@@ -148,7 +148,7 @@
   }
 
   &__text {
-    width: 90%;
+    width: 100%;
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -163,27 +163,31 @@
   }
 
   &__btn {
-    width: 90%;
+    width: 100%;
     display: flex;
     align-self: center;
     margin: 3rem 0 5rem 0;
     color: white;
+
+    button {
+      padding: 0;
+    }
 
     @include respond(tabPort) {
       margin: 2rem 0 3rem 0;
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       padding: 0.8rem 1.5rem;
       background-color: var(--primary-color);
 
       @include respond(screenMenu) {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
       }
 
       @include respond(tabPort) {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import "./nav.styles.scss";
@@ -16,7 +16,7 @@ const NavList = ({ isAuth, menu, signOutStart }) => {
     signOutStart();
   };
 
-  useEffect(() => {
+  useMemo(() => {
     if (!isAuth) {
       setLogout("Logout");
       window.location.assign(process.env.REACT_APP_HOME_URL);

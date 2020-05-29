@@ -9,6 +9,11 @@ export const selectCurrentUser = createSelector(
 
 export const selectPopUp = createSelector([selectUser], (user) => user.popUp);
 
+export const selectBitCoinInvoice = createSelector(
+  [selectUser],
+  (user) => user.bitCoinInvoice
+);
+
 export const selectToken = createSelector([selectUser], (user) => user.token);
 export const selectIsAuth = createSelector([selectUser], (user) => user.isAuth);
 
