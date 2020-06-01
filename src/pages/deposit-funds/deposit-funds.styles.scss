@@ -491,6 +491,8 @@
   flex-direction: column;
   justify-content: center;
   color: var(--primary-color);
+  word-wrap: break-word;
+  // overflow: hidden;
 
   @include respond(phone) {
     width: 95%;
@@ -522,6 +524,8 @@
           // text-align: center;
 
           p {
+            word-break: break-all;
+
             @include respond(tabPort) {
               font-size: 1.3rem;
             }
@@ -555,7 +559,19 @@
 
     &__btn {
       display: inline-block;
-      width: 30rem !important;
+      // font-size: 1rem;
+
+      // width: 30rem !important;
+      @include respond(tabPort) {
+        font-size: 1.4rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.3rem;
+      }
+
+
+
     }
   }
 
@@ -563,16 +579,71 @@
     display: none;
   }
 
+  .loader {
+
+    img {
+      width: 7%;
+
+      @include respond(tabPort) {
+        width: 15%;
+      }
+    }
+  }
+
   .stage-begin {
     margin-top: 1rem;
     cursor: pointer;
 
     img {
-      width: 30%;
+      width: 65%;
+
+      @include respond(tabLand) {
+        width: 60%;
+      }
+
+      @include respond(tabPort) {
+        width: 55%;
+      }
 
       @include respond(phone) {
-        width: 25%;
+        width: 46%;
       }
+    }
+  }
+
+  .stage-loading {
+    img {
+      width: 45%;
+
+      @include respond(tabLand) {
+        width: 42%;
+      }
+
+      @include respond(tabPort) {
+        width: 40%;
+      }
+
+      @include respond(phone) {
+        width: 35%;
+      }
+    }
+  }
+
+  .stage-ready {
+    p {
+      font-size: 1.8rem;
+
+      @include respond(screenMenu) {
+        font-size: 1.6rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.3rem;
+      }
+    }
+
+    img {
+      width: 40%;
     }
   }
 
@@ -580,52 +651,82 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    word-wrap: break-word;
 
     h1 {
-      display: block;
       color: #5cb85c;
       font-size: 2rem;
       padding: 1rem 0;
 
       @include respond(tabPort) {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
       }
 
-      @include respond(tabPort) {
-        font-size: 1.4rem;
+      @include respond(phone) {
+        font-size: 1.5rem;
       }
     }
 
     p {
-      b {
-        color: var(--secondary-color)
-      }
+      font-size: 1.7rem;
 
       @include respond(tabPort) {
-        font-size: 1.2rem;
-      }
-
-      @include respond(tabPort) {
-        font-size: 1.1rem;
-      }
-    }
-
-    img {
-      width: 40%;
-
-      @include respond(tabPort) {
-        width: 30%;
+        font-size: 1.4rem;
       }
 
       @include respond(phone) {
-        width: 25%;
+        font-size: 1.2rem;
+      }
+
+      b {
+        color: var(--secondary-color)
       }
     }
-  }
 
-  .stage-loading {
     img {
-      width: 40%;
+      width: 23%;
+
+      @include respond(tabLand) {
+        width: 20%;
+      }
+
+      @include respond(tabPort) {
+        width: 19%;
+      }
+
+      @include respond(phone) {
+        width: 17%;
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      background-color: var(--secondary-color);
+      // padding: 0;
+      padding: 0.8rem 1.5rem;
+
+      i {
+        padding-left: 1rem;
+      }
+
+      @include respond(tabPort) {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.4rem;
+
+        i {
+          padding-left: 0.5rem;
+        }
+      }
+
+      @include respond(phone) {
+        padding: 0.5rem 1.3rem;
+        font-size: 1.2rem;
+
+        i {
+          padding-left: 0.3rem;
+        }
+      }
     }
   }
 }

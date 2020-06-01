@@ -5,6 +5,7 @@ import {
   selectCurrentUser,
   selectBitCoinInvoice,
 } from "../../redux/user/user.selector";
+import { expireBitCoinInvoice } from "../../redux/user/user.actions";
 import { selectMenu } from "../../redux/ui/ui.selector";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
@@ -12,15 +13,15 @@ import { useRef } from "react";
 import BitCoinImg from "../../assets/img/pay_now_64.png";
 import BitCoinLoaderImg from "../../assets/img/BitcoinLoader.gif";
 import BitCoinSuccessImg from "../../assets/img/BitcoinSuccess.webp";
+import LoadingImg from "../../assets/img/loading-large.gif";
 // import Loader from "../../assets/img/"
 import { createBitCoinInvoiceStart } from "../../redux/user/user.actions";
 
-const Pay = ({ menu, user, bitCoinInvoice }) => {
+const Pay = ({ menu, user, bitCoinInvoice, expireBitCoinInvoice }) => {
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
   const { address, price_in_btc, amount } = bitCoinInvoice;
   const { name, country, email } = user;
-  const [loadBar, setLoadBar] = useState();
   const [isLoading, setIsLoading] = useState(true);
   // const match = useRouteMatch();
   const ajaxSrc = useRef(null);
@@ -38,6 +39,10 @@ const Pay = ({ menu, user, bitCoinInvoice }) => {
     var num_parts = num.toString().split(".");
     num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return num_parts.join(".");
+  }
+  function startProcessing() {
+    console.log("start processing");
+    // expireBitCoinInvoice();
   }
   useMemo(() => {
     window.scroll(0, 0);
@@ -61,18 +66,13 @@ const Pay = ({ menu, user, bitCoinInvoice }) => {
     bit.src = "https://blockchain.info/Resources/js/pay-now-button.js";
     ajaxSrc.current.appendChild(ajax);
     bitSrc.current.appendChild(bit);
-    setLoadBar(100);
   }, [ajax, bit]);
 
   return (
     <div className="pay" style={{ width: width }}>
       {isLoading ? (
-        <div ref={ajaxSrc}>
-          <img
-            ref={bitSrc}
-            src="https://blockchain.info/Resources/loading-large.gif"
-            alt=""
-          />
+        <div className="loader" ref={ajaxSrc}>
+          <img ref={bitSrc} src={LoadingImg} alt="" />
         </div>
       ) : (
         <div className="pay__box">
@@ -113,12 +113,6 @@ const Pay = ({ menu, user, bitCoinInvoice }) => {
           </div>
           <div
             ref={ajaxSrc}
-            style={{
-              fontSize: "16px",
-              margin: "0 auto",
-              width: "40rem",
-              // display: "none",
-            }}
             className="blockchain-btn pay__box__btn"
             data-address={"1933phfhK3ZgFQNLGSDXvqCn32k2buXY8a"}
             // data-address={address}
@@ -132,12 +126,11 @@ const Pay = ({ menu, user, bitCoinInvoice }) => {
                 onClick={(e) => pay(e)}
               >
                 <img src={BitCoinImg} alt="" />
-                {/* <p id="pay_btn">Pay Now</p> */}
               </div>
 
               <div
                 className="blockchain stage-loading"
-                style={{ textAlign: "center" }}
+                style={{ textAlign: "center", display: "none" }}
               >
                 <img src={BitCoinLoaderImg} alt="" />
               </div>
@@ -145,8 +138,9 @@ const Pay = ({ menu, user, bitCoinInvoice }) => {
                 style={{ display: "none" }}
                 className="blockchain stage-ready"
               >
+                <p align="center">Please Pay To This Bitcoin Address:</p>
                 <p align="center">
-                  Please Pay To This Bitcoin Address: <b>[[address]]</b>
+                  <b>[[address]]</b>
                 </p>
                 <p align="center" className="qr-code"></p>
               </div>
@@ -157,8 +151,12 @@ const Pay = ({ menu, user, bitCoinInvoice }) => {
                 <img src={BitCoinSuccessImg} alt="" />
                 <h1>Transaction was successful</h1>
                 <p>
-                  Payment of <b>[[value]] BTC</b> Received. Thank You.
+                  Payment of <b>[[value]] BTC</b> Received.
                 </p>
+                <p>Thank You.</p>
+                <button className="ripple2" onClick={startProcessing}>
+                  Process Payment <i className="fad fa-cogs"></i>
+                </button>
               </div>
               <div
                 style={{ display: "none" }}
@@ -183,6 +181,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   createBitCoinInvoiceStart: (amount) =>
     dispatch(createBitCoinInvoiceStart(amount)),
+  expireBitCoinInvoice: () => dispatch(expireBitCoinInvoice()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pay);

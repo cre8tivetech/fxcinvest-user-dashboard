@@ -5,10 +5,10 @@ import { selectMenu } from "../../redux/ui/ui.selector";
 import { setMenu } from "../../redux/ui/ui.actions";
 import { createStructuredSelector } from "reselect";
 
-const Footer = ({ setMenu, menu }) => {
+const Footer = ({ menu }) => {
   const device = window.matchMedia("(max-width: 600px)");
   const [width, setWidth] = useState();
-  const memorizedValue = useMemo(() => {
+  useMemo(() => {
     menu && device.matches ? setWidth("100%") : setWidth("93%");
     if (!menu)
       if (device.matches) {
@@ -17,7 +17,7 @@ const Footer = ({ setMenu, menu }) => {
         setWidth(null);
       }
   }, [device.matches, menu]);
-  useEffect(() => {}, [memorizedValue]);
+  // useEffect(() => {}, [memorizedValue]);
 
   return (
     <footer className="footer" style={{ width: width }}>

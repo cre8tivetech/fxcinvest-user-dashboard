@@ -36,3 +36,31 @@ export const transferApi = async (token, amount, username) => {
   );
   return collectionsMap;
 };
+
+export const bitcoinWithdrawalApi = async (
+  token,
+  amount,
+  wallet_address,
+  withdrawal_type,
+  transaction_type
+) => {
+  console.log(token, amount, wallet_address, withdrawal_type, transaction_type);
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: "Token " + token,
+  };
+  const url = process.env.REACT_APP_API + process.env.REACT_APP_WITHDRAWAL;
+  const collectionsMap = await Axios.post(
+    url,
+    {
+      amount,
+      wallet_address,
+      withdrawal_type,
+      transaction_type,
+    },
+    {
+      headers: headers,
+    }
+  );
+  return collectionsMap;
+};

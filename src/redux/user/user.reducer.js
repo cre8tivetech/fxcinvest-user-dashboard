@@ -90,6 +90,17 @@ const userReducer = (state = INITIAL_STATE, action) => {
         success: null,
         // paymentData: null,
       };
+
+    case UserActionTypes.RESEND_CONFIRM_EMAIL_SUCCESS:
+      return {
+        ...state,
+        isLoading: null,
+        message: null,
+        error: null,
+        success: action.payload,
+        // paymentData: null,
+      };
+
     case UserActionTypes.FORGET_PASSWORD_START:
       return {
         ...state,

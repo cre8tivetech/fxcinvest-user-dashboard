@@ -24,7 +24,7 @@ const Header = ({ signOutStart, setMenu, menu, user, isAuth }) => {
       !width && setWidth("93%");
     }
   };
-  const memorizedValue = useMemo(() => {
+  useMemo(() => {
     menu && device.matches ? setWidth("100%") : setWidth("93%");
     if (!menu)
       if (device.matches) {
@@ -38,7 +38,7 @@ const Header = ({ signOutStart, setMenu, menu, user, isAuth }) => {
       setLogout("Logout");
       window.location.assign(process.env.REACT_APP_HOME_URL);
     }
-  }, [isAuth, memorizedValue]);
+  }, [isAuth]);
 
   const signOut = () => {
     setLogout("red");

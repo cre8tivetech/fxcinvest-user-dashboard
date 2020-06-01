@@ -45,7 +45,7 @@ export const signInByTokenApi = async (uid, token) => {
 export const resendConfirmEmailApi = async (token) => {
   const headers = {
     "Content-Type": "application/json",
-    Authorization: "Bearer " + token,
+    Authorization: "Token " + token,
   };
   const url =
     process.env.REACT_APP_API + process.env.REACT_APP_RESEND_CONFIRM_EMAIL;
