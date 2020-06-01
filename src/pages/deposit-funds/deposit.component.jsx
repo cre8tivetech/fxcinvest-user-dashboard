@@ -92,7 +92,7 @@ const Deposit = ({
   }, [activeNav]);
 
   // Random component
-  const Completed = () => <span>Address has expired</span>;
+  const Completed = () => null;
 
   // Renderer callback with condition
   const renderer = ({ minutes, seconds, completed }) => {

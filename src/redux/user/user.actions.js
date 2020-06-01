@@ -50,6 +50,16 @@ export const transferStart = (data) => ({
   payload: data,
 });
 
+export const bankWithdrawalStart = (data) => ({
+  type: UserActionTypes.BANK_WITHDRAWAL_START,
+  payload: data,
+});
+
+export const bitcoinWithdrawalStart = (data) => ({
+  type: UserActionTypes.BITCOIN_WITHDRAWAL_START,
+  payload: data,
+});
+
 export const createBitCoinInvoiceStart = (amount) => ({
   type: UserActionTypes.CREATE_BITCOIN_INVOICE_START,
   payload: amount,

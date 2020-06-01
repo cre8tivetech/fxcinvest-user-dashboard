@@ -8,9 +8,11 @@ import { useMemo } from "react";
 import { selectMenu } from "../../redux/ui/ui.selector";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { Link } from "react-router-dom";
 import { selectCurrentUser } from "../../redux/user/user.selector";
+import { setMessage } from "../../redux/user/user.actions";
 
-const WithdrawFunds = ({ menu, user }) => {
+const WithdrawFunds = ({ menu, user, setMessage }) => {
   window.scroll(0, 0);
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
@@ -25,8 +27,9 @@ const WithdrawFunds = ({ menu, user }) => {
       }
   }, [device.matches, menu]);
   useEffect(() => {
+    setMessage(null);
     setLoadBar(100);
-  }, []);
+  }, [setMessage]);
 
   return (
     <div className="withdraw-funds" style={{ width: width }}>
@@ -38,7 +41,7 @@ const WithdrawFunds = ({ menu, user }) => {
       />
       {!user.is_email_confrim && <Message />}
       <div className="withdraw-funds__title">
-        <h1>My Transfers</h1>
+        <h1>Withdraw Funds</h1>
       </div>
       <div className="withdraw-funds__box">
         <h1>Credit / Debit cards</h1>
@@ -105,9 +108,13 @@ const WithdrawFunds = ({ menu, user }) => {
           <div className="withdraw-funds__box--content__3">
             <p>24 hours</p>
           </div>
-          <div className="withdraw-funds__box--content__4 ripple1">
+
+          <Link
+            to="/withdraw-funds/withdraw"
+            className="withdraw-funds__box--content__4 ripple1"
+          >
             <p>Withdraw</p>
-          </div>
+          </Link>
         </div>
       </div>
       <div className="withdraw-funds__bottom">
@@ -124,4 +131,7 @@ const mapStateToProps = createStructuredSelector({
   menu: selectMenu,
   user: selectCurrentUser,
 });
-export default connect(mapStateToProps)(WithdrawFunds);
+const mapDispatchToProps = (dispatch) => ({
+  setMessage: (message) => dispatch(setMessage(message)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(WithdrawFunds);

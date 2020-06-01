@@ -60,11 +60,11 @@ button {
   border-radius: 2px;
   font-size: 22px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
-  background: #2196F3;
+  // background: #2196F3;
 }
 
 /* Ripple magic */
-button{
+button {
   position: relative;
   overflow: hidden;
 }
@@ -88,10 +88,12 @@ button:after {
     transform: scale(0, 0);
     opacity: 1;
   }
+
   20% {
     transform: scale(25, 25);
     opacity: 1;
   }
+
   100% {
     opacity: 0;
     transform: scale(40, 40);

@@ -11,6 +11,10 @@
   color: #fff;
   font-size: 1.6rem;
 
+  @include respond(phone) {
+    width: 90%;
+  }
+
   &__content {
     font-family: 'Poppins-Light';
     padding: 1.5rem;

@@ -6,6 +6,7 @@ import {
   signInApi,
   signInByTokenApi,
   resetPasswordApi,
+  resendConfirmEmailApi,
 } from "../../api/authApi";
 import {
   setMessage,
@@ -23,9 +24,10 @@ import {
   createBitCoinInvoiceStart,
   createBitCoinInvoiceSuccess,
   fetchUserSuccess,
+  resendConfirmEmailSuccess,
 } from "./user.actions";
 import { createBitcoinInvoiceApi } from "../../api/payment";
-import { fetchUserApi, transferApi } from "../../api/api";
+import { fetchUserApi, transferApi, bitcoinWithdrawalApi } from "../../api/api";
 
 const userToken = (state) => state.user.token.key;
 const userExpire = (state) => state.user.token.expire;
@@ -136,6 +138,31 @@ export function* isUserAuthenticated() {
   }
 }
 
+export function* resendConfirmEmail() {
+  const token = yield select(userToken);
+  try {
+    const result = yield resendConfirmEmailApi(token).then(function (response) {
+      return response.data;
+    });
+    console.log(result);
+    yield put(resendConfirmEmailSuccess(result.message));
+    // yield delay(6000);
+    // yield put(setMessage(null));
+  } catch (error) {
+    console.log(error);
+    // yield put(
+    //   setMessage({
+    //     type: "error",
+    //     message: error.response
+    //       ? error.response.data.message || error.response.data.error
+    //       : "Oops!!, Poor internet connection, Please check your connectivity, And try again",
+    //   })
+    // );
+    // yield delay(5000);
+    // yield put(setMessage(null));
+  }
+}
+
 export function* isResetPassword({ payload: { token, new_password } }) {
   try {
     const result = yield resetPasswordApi(token, new_password).then(function (
@@ -230,9 +257,8 @@ export function* isTransfer({ payload: { amount, username } }) {
       return response.data;
     });
     if (result) {
-      console.log(result);
       yield put(setPopUp({ type: result.status, message: result.message }));
-      yield delay(8000);
+      yield delay(6000);
       yield put(setPopUp(null));
     }
   } catch (error) {
@@ -246,9 +272,49 @@ export function* isTransfer({ payload: { amount, username } }) {
   }
 }
 
-// export function* signInAfterSignUp({ payload: { user, additionalData } }) {
-//   yield getSnapshotFromUserAuth(user, additionalData);
-// }
+export function* isBitcoinWithdrawal({
+  payload: { amount, wallet_address, withdrawal_type, transaction_type },
+}) {
+  const token = yield select(userToken);
+  try {
+    const result = yield bitcoinWithdrawalApi(
+      token,
+      amount,
+      wallet_address,
+      withdrawal_type,
+      transaction_type
+    ).then(function (response) {
+      return response.data;
+    });
+    withdrawal_type = "Earning balances";
+    yield put(
+      setPopUp({
+        type: result.status,
+        message: result.message,
+        details: { ...result.data, withdrawal_type, transaction_type },
+      })
+    );
+  } catch (error) {
+    console.log(error.response.data.message);
+    yield put(
+      setPopUp(
+        error.response
+          ? {
+              type: error.response.data.status,
+              message: error.response.data.message || error.response.data.error,
+            }
+          : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
+      )
+    );
+    yield delay(7000);
+    yield put(setPopUp(null));
+    // signUpFailure(
+    //   error.response
+    //     ? error.response.data.message || error.response.data.error
+    //     : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
+    //
+  }
+}
 
 export function* onCheckUserSession() {
   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
@@ -269,8 +335,22 @@ export function* onTransferStart() {
   yield takeLatest(UserActionTypes.TRANSFER_START, isTransfer);
 }
 
+export function* onBitcoinWithdrawalStart() {
+  yield takeLatest(
+    UserActionTypes.BITCOIN_WITHDRAWAL_START,
+    isBitcoinWithdrawal
+  );
+}
+
 export function* onSignInByTokenStart() {
   yield takeLatest(UserActionTypes.SIGN_IN_BY_TOKEN_START, signByToken);
+}
+
+export function* onResendConfirmEmail() {
+  yield takeLatest(
+    UserActionTypes.RESEND_CONFIRM_EMAIL_START,
+    resendConfirmEmail
+  );
 }
 
 export function* onResetPassword() {
@@ -296,7 +376,9 @@ export function* userSagas() {
     call(onFetchUser),
     call(onCreateBitCoinInvoiceStart),
     call(onTransferStart),
+    call(onBitcoinWithdrawalStart),
     call(onSignInByTokenStart),
+    call(onResendConfirmEmail),
     call(onResetPassword),
     call(onSignOutStart),
     call(onSignUpStart),

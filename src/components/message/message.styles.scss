@@ -86,6 +86,21 @@
       font-size: 0.9rem;
     }
   }
+
+  .resendConfirmEmail {
+    // font-size: 1.3rem;
+    background-color: var(--primary-color);
+    margin-top: 1rem;
+    padding: 1rem;
+    color: var(--secondary-color);
+    font-weight: 800;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-color);
+      background-color: var(--secondary-color);
+    }
+  }
 }
 
 

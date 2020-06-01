@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard/dashboard.component";
 import MyTransfers from "./pages/my-transfers/my-transfers.component";
 import DepositFunds from "./pages/deposit-funds/deposit-funds.component";
 import WithdrawFunds from "./pages/withdraw-funds/withdraw-funds.component";
+import Withdraw from "./pages/withdraw-funds/withdraw.component";
 import InternalTransfers from "./pages/internal-transfers/internal-transfers.component";
 import Investment from "./pages/investment/investment.component";
 import Referrals from "./pages/referrals/referrals.component";
@@ -44,6 +45,16 @@ function App({ isLoading, checkAuth, checkUserSession, user }) {
               <Route exact path="/deposit-funds/deposit" component={Deposit} />
               <Route exact path="/deposit-funds/pay" component={Deposit} />
               <Route exact path="/withdraw-funds" component={WithdrawFunds} />
+              <Route
+                exact
+                path="/withdraw-funds/withdraw"
+                component={Withdraw}
+              />
+              <Route
+                exact
+                path="/withdraw-funds/confirm"
+                component={Withdraw}
+              />
               <Route
                 exact
                 path="/internal-transfers"

@@ -39,7 +39,7 @@ const DepositFunds = ({ menu, user }) => {
       />
       {!user.is_email_confrim && <Message />}
       <div className="deposit-funds__title">
-        <h1>My Transfers</h1>
+        <h1>Make A Deposit</h1>
       </div>
       <div className="deposit-funds__box">
         <h1>Credit / Debit cards</h1>

@@ -12,11 +12,8 @@ const PopUp = ({ popUp }) => {
 
   const messages = useCallback(() => {
     if (popUp) {
-      console.log("going");
-      popUp.type === "error"
-        ? setBgColor("#FF0000")
-        : setBgColor("var(--color-primary)");
-      popUp.type === "success" ? setBgColor("#4BB543") : setBgColor("white");
+      popUp.type === "error" && setBgColor("red");
+      popUp.type === "success" && setBgColor("#4BB543");
     }
   }, [popUp]);
 
