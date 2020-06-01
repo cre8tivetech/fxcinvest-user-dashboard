@@ -8,6 +8,7 @@ import WithdrawFunds from "./pages/withdraw-funds/withdraw-funds.component";
 import Withdraw from "./pages/withdraw-funds/withdraw.component";
 import InternalTransfers from "./pages/internal-transfers/internal-transfers.component";
 import Investment from "./pages/investment/investment.component";
+import Invest from "./pages/investment/invest.component";
 import Referrals from "./pages/referrals/referrals.component";
 import MyProfile from "./pages/my-profile/my-profile.component";
 import Error404 from "./pages/Error/error-404.component";
@@ -21,6 +22,7 @@ import { selectIsLoading, selectCurrentUser } from "./redux/user/user.selector";
 import Layout from "./components/layout/layout.component";
 import Deposit from "./pages/deposit-funds/deposit.component";
 import PopUp from "./components/message/popup.component";
+import CountDowns from "./components/countdowns/countdowns.component";
 // import Pay from "./pages/deposit-funds/pay.component";
 
 function App({ isLoading, checkAuth, checkUserSession, user }) {
@@ -36,6 +38,7 @@ function App({ isLoading, checkAuth, checkUserSession, user }) {
       ) : (
         <main>
           <Layout>
+            <CountDowns />
             <PopUp />
             <Switch>
               <Route exact path="/" component={Dashboard} />
@@ -61,6 +64,8 @@ function App({ isLoading, checkAuth, checkUserSession, user }) {
                 component={InternalTransfers}
               />
               <Route exact path="/investment" component={Investment} />
+              <Route exact path="/investment/invest" component={Invest} />
+              <Route exact path="/investment/confirm" component={Invest} />
               <Route exact path="/referrals" component={Referrals} />
               <Route exact path="/my-profile" component={MyProfile} />
               <Route
