@@ -1,0 +1,14 @@
+@import '../../themes/mixins.scss';
+
+.countdowns {
+  text-align: center;
+  word-wrap: break-word;
+  font-size: 1.3rem;
+  align-self: flex-end;
+  padding: 1rem;
+
+  @include respond(phone) {
+    padding: 0.5rem;
+    width: 15rem;
+  }
+}

@@ -177,62 +177,44 @@ const Deposit = ({
               <div className="deposit__content__form--box">
                 <div className="deposit__content__form--box__title">
                   <p>Payment System</p>
-                  <div
-                    data-tooltip="Your system for payment"
-                    data-tooltip-location="top"
-                  >
-                    i
-                  </div>
                 </div>
                 <input
                   type="text"
                   value="Bitcoin"
-                  onChange={() => ""}
+                  disabled
                   placeholder="(Min: 100)"
                 />
               </div>
               <div className="deposit__content__form--box">
                 <div className="deposit__content__form--box__title">
                   <p>Currency</p>
-                  <div
-                    data-tooltip="Currency for payment"
-                    data-tooltip-location="top"
-                  >
-                    i
-                  </div>
                 </div>
                 <input
                   type="text"
                   value="$ USD"
-                  onChange={() => ""}
+                  disabled
                   placeholder="(Min: 100)"
                 />
               </div>
               <div className="deposit__content__form--box">
                 <div className="deposit__content__form--box__title">
                   <p>Client Name</p>
-                  <div data-tooltip="Your username" data-tooltip-location="top">
-                    i
-                  </div>
                 </div>
                 <input
                   type="text"
                   value={user.name}
-                  onChange={() => ""}
+                  disabled
                   placeholder="(Min: 100)"
                 />
               </div>
               <div className="deposit__content__form--box">
                 <div className="deposit__content__form--box__title">
                   <p>Region</p>
-                  <div data-tooltip="Your username" data-tooltip-location="top">
-                    i
-                  </div>
                 </div>
                 <input
                   type="text"
                   value={user.country}
-                  onChange={() => ""}
+                  disabled
                   placeholder="(Min: 100)"
                 />
               </div>

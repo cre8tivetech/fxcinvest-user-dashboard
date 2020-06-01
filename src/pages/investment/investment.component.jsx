@@ -8,8 +8,9 @@ import { connect } from "react-redux";
 import { selectMenu } from "../../redux/ui/ui.selector";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selector";
+import { setMessage, setInvestData } from "../../redux/user/user.actions";
 
-const Investment = ({ menu, user }) => {
+const Investment = ({ menu, user, setMessage, setInvestData }) => {
   window.scroll(0, 0);
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
@@ -22,7 +23,9 @@ const Investment = ({ menu, user }) => {
       } else {
         setWidth(null);
       }
-  }, [device.matches, menu]);
+    setMessage(null);
+    setInvestData(null);
+  }, [device.matches, menu, setInvestData, setMessage]);
   useEffect(() => {
     setLoadBar(100);
   }, []);
@@ -56,4 +59,8 @@ const mapStateToProps = createStructuredSelector({
   menu: selectMenu,
   user: selectCurrentUser,
 });
-export default connect(mapStateToProps)(Investment);
+const mapDispatchToProps = (dispatch) => ({
+  setMessage: (data) => dispatch(setMessage(data)),
+  setInvestData: (data) => dispatch(setInvestData(data)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Investment);

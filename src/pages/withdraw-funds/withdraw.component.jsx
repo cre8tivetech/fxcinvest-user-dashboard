@@ -172,64 +172,41 @@ const Withdraw = ({
               <div className="withdraw__content__form--box">
                 <div className="withdraw__content__form--box__title">
                   <p>Payment System</p>
-                  <div
-                    data-tooltip="Your system for payment"
-                    data-tooltip-location="top"
-                  >
-                    i
-                  </div>
                 </div>
                 <input
                   type="text"
                   value="₿ Bitcoin"
-                  onChange={() => ""}
+                  disabled
                   placeholder="(Min: 100)"
                 />
               </div>
               <div className="withdraw__content__form--box">
                 <div className="withdraw__content__form--box__title">
                   <p>Client Name</p>
-                  <div data-tooltip="Your username" data-tooltip-location="top">
-                    i
-                  </div>
                 </div>
                 <input
                   type="text"
                   value={user.name}
-                  onChange={() => ""}
+                  disabled
                   placeholder="(Min: 100)"
                 />
               </div>
               <div className="withdraw__content__form--box">
                 <div className="withdraw__content__form--box__title">
                   <p>Region</p>
-                  <div data-tooltip="Your username" data-tooltip-location="top">
-                    i
-                  </div>
                 </div>
                 <input
                   type="text"
                   value={user.country}
-                  onChange={() => ""}
+                  disabled
                   placeholder="(Min: 100)"
                 />
               </div>
               <div className="withdraw__content__form--box">
                 <div className="withdraw__content__form--box__title">
                   <p>Transaction Type</p>
-                  <div
-                    data-tooltip="Minimum amount is $10"
-                    data-tooltip-location="top"
-                  >
-                    i
-                  </div>
                 </div>
-                <input
-                  type="text"
-                  onChange={(e) => handleChange(e)}
-                  value={transaction_type}
-                  required
-                />
+                <input type="text" value={transaction_type} required disabled />
               </div>
 
               <div className="withdraw__content__form--box">

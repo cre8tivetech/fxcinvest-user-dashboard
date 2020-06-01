@@ -27,7 +27,12 @@ import {
   resendConfirmEmailSuccess,
 } from "./user.actions";
 import { createBitcoinInvoiceApi } from "../../api/payment";
-import { fetchUserApi, transferApi, bitcoinWithdrawalApi } from "../../api/api";
+import {
+  fetchUserApi,
+  transferApi,
+  bitcoinWithdrawalApi,
+  investApi,
+} from "../../api/api";
 
 const userToken = (state) => state.user.token.key;
 const userExpire = (state) => state.user.token.expire;
@@ -316,6 +321,45 @@ export function* isBitcoinWithdrawal({
   }
 }
 
+export function* isInvest({ payload: { plan, amount } }) {
+  const token = yield select(userToken);
+  try {
+    const result = yield investApi(token, plan, amount).then(function (
+      response
+    ) {
+      return response.data;
+    });
+    console.log(result);
+    yield isFetchUser();
+    yield put(
+      setPopUp({
+        type: result.status,
+        message: result.message,
+        details: result.data,
+      })
+    );
+  } catch (error) {
+    // console.log(error.response.data.message);
+    yield put(
+      setPopUp(
+        error.response
+          ? {
+              type: "error",
+              message: error.response.data.message || error.response.data.error,
+            }
+          : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
+      )
+    );
+    yield delay(7000);
+    yield put(setPopUp(null));
+    // signUpFailure(
+    //   error.response
+    //     ? error.response.data.message || error.response.data.error
+    //     : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
+    //
+  }
+}
+
 export function* onCheckUserSession() {
   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
 }
@@ -340,6 +384,10 @@ export function* onBitcoinWithdrawalStart() {
     UserActionTypes.BITCOIN_WITHDRAWAL_START,
     isBitcoinWithdrawal
   );
+}
+
+export function* onInvestStart() {
+  yield takeLatest(UserActionTypes.INVEST_START, isInvest);
 }
 
 export function* onSignInByTokenStart() {
@@ -377,6 +425,7 @@ export function* userSagas() {
     call(onCreateBitCoinInvoiceStart),
     call(onTransferStart),
     call(onBitcoinWithdrawalStart),
+    call(onInvestStart),
     call(onSignInByTokenStart),
     call(onResendConfirmEmail),
     call(onResetPassword),

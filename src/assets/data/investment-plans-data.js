@@ -16,6 +16,13 @@ export const InvestmentCardData = [
       "Enhanced Security",
       "Wallet Integration",
     ],
+    invest: {
+      name: "forex",
+      minimum: 50,
+      maximum: 1500,
+      days: 10,
+      percentage: 10,
+    },
   },
   {
     header: Img2,
@@ -30,6 +37,13 @@ export const InvestmentCardData = [
       "Enhanced Security",
       "Wallet Integration",
     ],
+    invest: {
+      name: "cryptocurrency",
+      minimum: 1500,
+      maximum: 5000,
+      days: 15,
+      percentage: 50,
+    },
   },
   {
     header: Img3,
@@ -44,5 +58,12 @@ export const InvestmentCardData = [
       "Enhanced Security",
       "Wallet Integration",
     ],
+    invest: {
+      name: "vip",
+      minimum: 3000,
+      maximum: "Unlimited",
+      days: 30,
+      percentage: 100,
+    },
   },
 ];

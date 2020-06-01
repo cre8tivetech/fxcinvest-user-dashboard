@@ -37,6 +37,11 @@ export const setPopUp = (messages) => ({
   payload: messages,
 });
 
+export const setInvestData = (data) => ({
+  type: UserActionTypes.SET_INVEST_DATA,
+  payload: data,
+});
+
 export const expireBitCoinInvoice = () => ({
   type: UserActionTypes.EXPIRE_BITCOIN_INVOICE,
 });
@@ -68,6 +73,11 @@ export const createBitCoinInvoiceStart = (amount) => ({
 export const createBitCoinInvoiceSuccess = (invoice) => ({
   type: UserActionTypes.CREATE_BITCOIN_INVOICE_SUCCESS,
   payload: invoice,
+});
+
+export const investStart = (data) => ({
+  type: UserActionTypes.INVEST_START,
+  payload: data,
 });
 
 export const resendConfirmEmailStart = () => ({

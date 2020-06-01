@@ -18,7 +18,6 @@ export const fetchUserApi = async (token, uid) => {
 };
 
 export const transferApi = async (token, amount, username) => {
-  console.log(token, amount, username);
   const headers = {
     "Content-Type": "application/json",
     Authorization: "Token " + token,
@@ -44,7 +43,6 @@ export const bitcoinWithdrawalApi = async (
   withdrawal_type,
   transaction_type
 ) => {
-  console.log(token, amount, wallet_address, withdrawal_type, transaction_type);
   const headers = {
     "Content-Type": "application/json",
     Authorization: "Token " + token,
@@ -62,5 +60,37 @@ export const bitcoinWithdrawalApi = async (
       headers: headers,
     }
   );
+  return collectionsMap;
+};
+
+export const investApi = async (token, plan, capital) => {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: "Token " + token,
+  };
+  const url = process.env.REACT_APP_API + process.env.REACT_APP_INVEST;
+  const collectionsMap = await Axios.put(
+    url,
+    {
+      plan,
+      capital,
+    },
+    {
+      headers: headers,
+    }
+  );
+  return collectionsMap;
+};
+
+export const getTransfersApi = async (token, uid) => {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: "Token " + token,
+  };
+  const url =
+    process.env.REACT_APP_API + process.env.REACT_APP_GET_TRANSFERS + uid;
+  const collectionsMap = await Axios.get(url, {
+    headers: headers,
+  });
   return collectionsMap;
 };

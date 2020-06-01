@@ -9,6 +9,7 @@ import {
   selectIsAuth,
 } from "../../redux/user/user.selector";
 import { signOutStart } from "../../redux/user/user.actions";
+import CountDowns from "../countdowns/countdowns.component";
 
 const Header = ({ signOutStart, setMenu, menu, user, isAuth }) => {
   const device = window.matchMedia("(max-width: 600px)");
@@ -56,6 +57,7 @@ const Header = ({ signOutStart, setMenu, menu, user, isAuth }) => {
         {!menu && <i onClick={() => menuClick()} className="fal fa-stream"></i>}
       </div>
       <div className="header__right">
+        <CountDowns />
         <div className="header__right--name">
           <h1>
             {capitalize(user.name.split(" ")[0])}{" "}

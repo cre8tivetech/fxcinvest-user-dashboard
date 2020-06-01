@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   currentUser: null,
   popUp: null,
   bitCoinInvoice: null,
+  investData: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -58,6 +59,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
         bitCoinInvoice: null,
         error: null,
         success: null,
+      };
+    case UserActionTypes.SET_INVEST_DATA:
+      return {
+        ...state,
+        investData: action.payload,
+        error: null,
+        success: null,
+        popUp: null,
       };
     case UserActionTypes.SET_TOKEN:
       return {

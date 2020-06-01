@@ -61,6 +61,40 @@ const MyTransfers = ({ menu, user }) => {
       <div className="my-transfers__box">
         <h1>Deposits</h1>
         <div className="line1"></div>
+        {/* <div className="deposit-funds__box--header">
+          <div className="deposit-funds__box--header__1">
+            <p>Transfer Method</p>
+          </div>
+          <div className="deposit-funds__box--header__2">
+            <p>Currency</p>
+          </div>
+          <div className="deposit-funds__box--header__3">
+            <p>Processing Time</p>
+          </div>
+          <div className="deposit-funds__box--header__4"></div>
+        </div>
+
+        <div className="line2"></div>
+        <div className="deposit-funds__box--content">
+          <div className="deposit-funds__box--content__1">
+            <p>Visa</p>
+          </div>
+          <div className="deposit-funds__box--content__2">
+            <p>USD</p>
+          </div>
+          <div className="deposit-funds__box--content__3">
+            <p>Instant</p>
+          </div>
+          <div
+            data-tooltip="Coming Soon"
+            data-tooltip-location="top"
+            className="deposit-funds__box--content__4"
+          >
+            <p>Deposit</p>
+          </div>
+        </div>
+
+        <div className="line3"></div> */}
         <p>You didn't make any transfer yet</p>
         <div className="my-transfers__box--btn ripple1">Deposit Now</div>
       </div>
