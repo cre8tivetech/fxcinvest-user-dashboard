@@ -11,7 +11,6 @@ import { selectCurrentUser, selectPopUp } from "../../redux/user/user.selector";
 import { transferStart } from "../../redux/user/user.actions";
 
 const InternalTransfers = ({ menu, user, transferStart, popUp }) => {
-  window.scroll(0, 0);
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
   const [loadBar, setLoadBar] = useState();
@@ -21,6 +20,9 @@ const InternalTransfers = ({ menu, user, transferStart, popUp }) => {
     username: "",
   });
   const { amount, username } = transferCredentials;
+  useMemo(() => {
+    window.scroll(0, 0);
+  }, []);
   useMemo(() => {
     if (menu) device.matches ? setWidth("100%") : setWidth("93%");
     if (!menu)
