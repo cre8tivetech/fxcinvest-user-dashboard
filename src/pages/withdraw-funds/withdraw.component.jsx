@@ -100,13 +100,10 @@ const Withdraw = ({
   useEffect(() => {
     setLoadBar(100);
     activeNav();
-    // if (popUp) {
-    //   setWithdrawBtn("Withdraw");
-    //   console.log("gooda");
-    // if (popUp.type === "success") {
-
-    // }
-  }, [activeNav]);
+    if (popUp) {
+      setWithdrawBtn("Withdraw");
+    }
+  }, [activeNav, popUp]);
 
   const handleSubmit = async (event) => {
     setMessage(null);

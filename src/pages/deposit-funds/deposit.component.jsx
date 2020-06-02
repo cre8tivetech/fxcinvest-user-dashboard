@@ -6,7 +6,7 @@ import Message from "../../components/message/message.component";
 import { selectMenu } from "../../redux/ui/ui.selector";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
-import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { Link, useRouteMatch, useHistory, useLocation } from "react-router-dom";
 import Countdown from "react-countdown";
 import {
   selectCurrentUser,
@@ -35,6 +35,8 @@ const Deposit = ({
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   const history = useHistory();
+  const location = useLocation();
+  const success = location.pathname === "/deposit-funds/pay/success";
 
   useMemo(() => {
     window.scroll(0, 0);
@@ -64,7 +66,7 @@ const Deposit = ({
           setNav1("current");
           setNav2(null);
           break;
-        case "/deposit-funds/pay":
+        case "/deposit-funds/pay" || "/deposit-funds/pay/success":
           if (bitCoinInvoice) {
             history.push("/deposit-funds/pay");
             setNav2("current");
@@ -92,24 +94,24 @@ const Deposit = ({
   }, [activeNav]);
 
   // Random component
-  const Completed = () => null;
+  // const Completed = () => null;
 
   // Renderer callback with condition
-  const renderer = ({ minutes, seconds, completed }) => {
-    if (completed) {
-      // Render a completed state
-      expireBitCoinInvoice();
-      history.push("/deposit-funds/deposit");
-      return <Completed />;
-    } else {
-      // Render a countdown
-      return (
-        <span>
-          {minutes}:{seconds}
-        </span>
-      );
-    }
-  };
+  // const renderer = ({ minutes, seconds, completed }) => {
+  //   if (completed) {
+  // Render a completed state
+  // expireBitCoinInvoice();
+  // history.push("/deposit-funds/deposit");
+  // return <Completed />;
+  // } else {
+  // Render a countdown
+  //     return (
+  //       <span>
+  //         {minutes}:{seconds}
+  //       </span>
+  //     );
+  //   }
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -133,9 +135,10 @@ const Deposit = ({
         onLoaderFinished={() => setLoadBar(0)}
       />
       {!user.is_email_confrim && <Message />}
-      <div className="deposit__title">
-        <h1>Deposit Request</h1>
-        {bitCoinInvoice ? (
+      {!success && (
+        <div className="deposit__title">
+          <h1>Deposit Request</h1>
+          {/* {bitCoinInvoice ? (
           <div>
             <p>
               <b>
@@ -147,26 +150,29 @@ const Deposit = ({
               Minutes Remaining for Wallet Address To Expire
             </p>
           </div>
-        ) : null}
-      </div>
-      <div className="deposit__link">
-        <div className="steps">
-          <ul>
-            <li
-              className={nav1}
-              onClick={() => activeNav("/deposit-funds/deposit")}
-            >
-              <Link to="">Transfer Details</Link>
-            </li>
-            <li
-              className={nav2}
-              onClick={() => activeNav("/deposit-funds/pay")}
-            >
-              <Link to="#">Confirm Transfer</Link>
-            </li>
-          </ul>
+        ) : null} */}
         </div>
-      </div>
+      )}
+      {!success && (
+        <div className="deposit__link">
+          <div className="steps">
+            <ul>
+              <li
+                className={nav1}
+                onClick={() => activeNav("/deposit-funds/deposit")}
+              >
+                <Link to="">Transfer Details</Link>
+              </li>
+              <li
+                className={nav2}
+                onClick={() => activeNav("/deposit-funds/pay")}
+              >
+                <Link to="#">Confirm Transfer</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
       {path === "/deposit-funds/deposit" && (
         <div className="deposit__content">
           <div className="deposit__content__img">
@@ -254,7 +260,8 @@ const Deposit = ({
           </form>
         </div>
       )}
-      {bitCoinInvoice && path === "/deposit-funds/pay" && <Pay />}
+      {(bitCoinInvoice && path === "/deposit-funds/pay" && <Pay />) ||
+        (bitCoinInvoice && path === "/deposit-funds/pay/success" && <Pay />)}
     </div>
   );
 };

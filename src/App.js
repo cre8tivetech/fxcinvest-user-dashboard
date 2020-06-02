@@ -18,19 +18,24 @@ import { createStructuredSelector } from "reselect";
 import { selectMenu } from "./redux/ui/ui.selector";
 import { checkAuth, checkUserSession } from "./redux/user/user.actions";
 import { useEffect } from "react";
-import { selectIsLoading, selectCurrentUser } from "./redux/user/user.selector";
+import {
+  selectIsLoading,
+  selectCurrentUser,
+  selectBitCoinInvoice,
+} from "./redux/user/user.selector";
 import Layout from "./components/layout/layout.component";
 import Deposit from "./pages/deposit-funds/deposit.component";
 import PopUp from "./components/message/popup.component";
 import CountDowns from "./components/countdowns/countdowns.component";
 // import Pay from "./pages/deposit-funds/pay.component";
+// import Pay from "./pages/deposit-funds/pay.component";
 
-function App({ isLoading, checkAuth, checkUserSession, user }) {
+function App({ isLoading, checkAuth, checkUserSession, user, bitcoinInvoice }) {
   useMemo(() => {
     checkAuth();
     checkUserSession();
   }, [checkAuth, checkUserSession]);
-  useEffect(() => {}, [user]);
+  useEffect(() => {}, []);
   return (
     <div className="App">
       {isLoading || !user ? (
@@ -46,7 +51,18 @@ function App({ isLoading, checkAuth, checkUserSession, user }) {
               <Route exact path="/my-transfers" component={MyTransfers} />
               <Route exact path="/deposit-funds" component={DepositFunds} />
               <Route exact path="/deposit-funds/deposit" component={Deposit} />
-              <Route exact path="/deposit-funds/pay" component={Deposit} />
+              <Route
+                exact
+                path="/deposit-funds/pay"
+                render={() => (bitcoinInvoice ? <Deposit /> : <Error404 />)}
+                // component={Deposit}
+              />
+              <Route
+                exact
+                path="/deposit-funds/pay/success"
+                render={() => (bitcoinInvoice ? <Deposit /> : <Error404 />)}
+                // component={Deposit}
+              />
               <Route exact path="/withdraw-funds" component={WithdrawFunds} />
               <Route
                 exact
@@ -84,6 +100,7 @@ const mapStateToProps = createStructuredSelector({
   menu: selectMenu,
   isLoading: selectIsLoading,
   user: selectCurrentUser,
+  bitcoinInvoice: selectBitCoinInvoice,
 });
 const mapDispatchToProps = (dispatch) => ({
   checkAuth: () => dispatch(checkAuth()),

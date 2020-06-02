@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import "./deposit-funds.styles.scss";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, useParams, useLocation, Link } from "react-router-dom";
 import {
   selectCurrentUser,
   selectBitCoinInvoice,
@@ -9,9 +9,9 @@ import { expireBitCoinInvoice } from "../../redux/user/user.actions";
 import { selectMenu } from "../../redux/ui/ui.selector";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
-import { useRef } from "react";
-import BitCoinImg from "../../assets/img/pay_now_64.png";
-import BitCoinLoaderImg from "../../assets/img/BitcoinLoader.gif";
+// import { useRef } from "react";
+// import BitCoinImg from "../../assets/img/pay_now_64.png";
+// import BitCoinLoaderImg from "../../assets/img/BitcoinLoader.gif";
 import BitCoinSuccessImg from "../../assets/img/BitcoinSuccess.webp";
 import LoadingImg from "../../assets/img/loading-large.gif";
 // import Loader from "../../assets/img/"
@@ -20,29 +20,33 @@ import { createBitCoinInvoiceStart } from "../../redux/user/user.actions";
 const Pay = ({ menu, user, bitCoinInvoice, expireBitCoinInvoice }) => {
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
-  const { address, price_in_btc, amount } = bitCoinInvoice;
+  const {
+    address,
+    txn_id,
+    amount,
+    amount_in_dollars,
+    checkout_url,
+  } = bitCoinInvoice;
   const { name, country, email } = user;
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const success = location.pathname === "/deposit-funds/pay/success";
   // const match = useRouteMatch();
-  const ajaxSrc = useRef(null);
-  const bitSrc = useRef(null);
-  const ajax = document.createElement("script");
-  const bit = document.createElement("script");
+  // const ajaxSrc = useRef(null);
+  // const bitSrc = useRef(null);
+  // const ajax = document.createElement("script");
+  // const bit = document.createElement("script");
 
-  const pay = (e) => {
-    e.preventDefault();
-    const name = e.currentTarget.parentElement;
-    console.log(name);
-    // name.className = "hide";
-  };
+  // const pay = (e) => {
+  //   e.preventDefault();
+  //   const name = e.currentTarget.parentElement;
+  //   console.log(name);
+  //   // name.className = "hide";
+  // };
   function thousands_separators(num) {
     var num_parts = num.toString().split(".");
     num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return num_parts.join(".");
-  }
-  function startProcessing() {
-    console.log("start processing");
-    // expireBitCoinInvoice();
   }
   useMemo(() => {
     window.scroll(0, 0);
@@ -61,57 +65,101 @@ const Pay = ({ menu, user, bitCoinInvoice, expireBitCoinInvoice }) => {
       }, 5000);
   }, [device.matches, isLoading, menu]);
   useEffect(() => {
-    ajax.src =
-      "https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js";
-    bit.src = "https://blockchain.info/Resources/js/pay-now-button.js";
-    ajaxSrc.current.appendChild(ajax);
-    bitSrc.current.appendChild(bit);
-  }, [ajax, bit]);
+    // ajax.src =
+    //   "https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js";
+    // bit.src = "https://blockchain.info/Resources/js/pay-now-button.js";
+    // ajaxSrc.current.appendChild(ajax);
+    // bitSrc.current.appendChild(bit);
+  }, []);
 
   return (
     <div className="pay" style={{ width: width }}>
-      {isLoading ? (
+      {/* {isLoading ? (
         <div className="loader" ref={ajaxSrc}>
           <img ref={bitSrc} src={LoadingImg} alt="" />
         </div>
+      ) : ( */}
+      {isLoading ? (
+        <div className="loader">
+          <img src={LoadingImg} alt="" />
+        </div>
       ) : (
-        <div className="pay__box">
-          <div className="pay__box__contents">
-            <div className="pay__box__contents--title">
-              <h1>Payment Transfer</h1>
+        <div
+          className="pay__box"
+          style={success ? { backgroundColor: "white" } : null}
+        >
+          {!success && (
+            <div className="pay__box__contents">
+              <div className="pay__box__contents--title">
+                <h1>Payment Transfer</h1>
+              </div>
+              <div className="pay__box--data">
+                <div className="pay__box__contents--data__content">
+                  <p>Name</p>
+                  <p>{name}</p>
+                </div>
+                <div className="pay__box__contents--data__content">
+                  <p>Email</p>
+                  <p>{email}</p>
+                </div>
+                <div className="pay__box__contents--data__content">
+                  <p>Country</p>
+                  <p>{country}</p>
+                </div>
+                <div className="pay__box__contents--data__content">
+                  <p>Payment Gateway</p>
+                  <p>BTC</p>
+                </div>
+                <div className="pay__box__contents--data__content">
+                  <p>Transaction id</p>
+                  <p>{txn_id}</p>
+                </div>
+                <div className="pay__box__contents--data__content">
+                  <p>Wallet Address</p>
+                  <p>{address}</p>
+                </div>
+                <div className="pay__box__contents--data__content">
+                  <p>Amount in Dollars</p>
+                  <p>${thousands_separators(amount_in_dollars)}</p>
+                </div>
+                <div className="pay__box__contents--data__content">
+                  <p>Amount in BitCoin</p>
+                  <p>{thousands_separators(amount)}</p>
+                </div>
+                <div className="pay__box__contents--data__content">
+                  <p>Processing Time</p>
+                  <p>24 Hours</p>
+                </div>
+              </div>
             </div>
-            <div className="pay__box--data">
-              <div className="pay__box__contents--data__content">
-                <p>Name</p>
-                <p>{name}</p>
-              </div>
-              <div className="pay__box__contents--data__content">
-                <p>Email</p>
-                <p>{email}</p>
-              </div>
-              <div className="pay__box__contents--data__content">
-                <p>Country</p>
-                <p>{country}</p>
-              </div>
-              <div className="pay__box__contents--data__content">
-                <p>Payment Gateway</p>
-                <p>BTC</p>
-              </div>
-              <div className="pay__box__contents--data__content">
-                <p>Amount in Dollars</p>
-                <p>${thousands_separators(amount)}</p>
-              </div>
-              <div className="pay__box__contents--data__content">
-                <p>Amount in BitCoin</p>
-                <p>{thousands_separators(price_in_btc)}</p>
-              </div>
-              <div className="pay__box__contents--data__content">
-                <p>Processing Time</p>
-                <p>24 Hours</p>
-              </div>
+          )}
+          {/* <div className="blockchain-btn pay__box__btn"> */}
+          {success ? (
+            <div className="blockchain stage-paid">
+              <img src={BitCoinSuccessImg} alt="" />
+              <h1>Transaction was successful</h1>
+              <p>
+                Payment of <b>{amount} BTC</b> Processing.
+              </p>
+              <p>Thank You.</p>
+              <Link to="/">
+                <button>
+                  Go back to dashboard <i className="fas fa-tachometer"></i>
+                </button>
+              </Link>
             </div>
-          </div>
-          <div
+          ) : (
+            <a href={checkout_url}>
+              <button className="ripple2 pay__box__btn">
+                <i className="fab fa-bitcoin"></i> Pay now
+              </button>
+            </a>
+          )}
+
+          {/* </div> */}
+          {/****************#DO NOT DELETE THIS COMMENT, DELETING IT CAN CRASH YOUR COMPUTER*****************/}
+
+          {/* <div
             ref={ajaxSrc}
             className="blockchain-btn pay__box__btn"
             data-address={"1933phfhK3ZgFQNLGSDXvqCn32k2buXY8a"}
@@ -165,7 +213,7 @@ const Pay = ({ menu, user, bitCoinInvoice, expireBitCoinInvoice }) => {
                 <font color="red">[[error]]</font>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </div>

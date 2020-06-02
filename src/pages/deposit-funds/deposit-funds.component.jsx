@@ -11,8 +11,9 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import { selectCurrentUser } from "../../redux/user/user.selector";
+import { expireBitCoinInvoice } from "../../redux/user/user.actions";
 
-const DepositFunds = ({ menu, user }) => {
+const DepositFunds = ({ menu, user, expireBitCoinInvoice }) => {
   window.scroll(0, 0);
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
@@ -28,7 +29,8 @@ const DepositFunds = ({ menu, user }) => {
   }, [device.matches, menu]);
   useEffect(() => {
     setLoadBar(100);
-  }, []);
+    expireBitCoinInvoice();
+  }, [expireBitCoinInvoice]);
   return (
     <div className="deposit-funds" style={{ width: width }}>
       <LoadingBar
@@ -157,4 +159,7 @@ const mapStateToProps = createStructuredSelector({
   menu: selectMenu,
   user: selectCurrentUser,
 });
-export default connect(mapStateToProps)(DepositFunds);
+const mapDispatchToProps = (dispatch) => ({
+  expireBitCoinInvoice: () => dispatch(expireBitCoinInvoice()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(DepositFunds);

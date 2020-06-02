@@ -231,12 +231,19 @@ export function* isCreateBitCoinInvoice({ payload: amount }) {
     ) {
       return response.data;
     });
+    console.log(result.data);
     if (result) {
       let d = new Date();
       let v = new Date();
       v.setMinutes(d.getMinutes() + 15);
+      // let goid = console.log(new Date(result.data.timeout * 1000));
+      // console.log(goid);
       yield put(
-        createBitCoinInvoiceSuccess({ ...result.data, amount, expire: v })
+        createBitCoinInvoiceSuccess({
+          ...result.data,
+          amount_in_dollars: amount,
+          // expire: v,
+        })
       );
       yield put(setPopUp({ type: result.status, message: result.message }));
       yield delay(8000);
