@@ -36,16 +36,6 @@ const NavList = ({ isAuth, menu, signOutStart }) => {
             {!menu && <p>Dashboard</p>}
           </li>
         </NavLink>
-        <NavLink activeclassname="active" className="list " to="/my-transfers">
-          <li
-            style={
-              menu ? { justifyContent: "center", padding: "1rem 0 1rem 0" } : {}
-            }
-          >
-            <i className="fad fa-exchange"></i>
-            {!menu && <p>My Transfers</p>}
-          </li>
-        </NavLink>
         <NavLink activeclassname="active" className="list" to="/deposit-funds">
           <li
             style={
@@ -54,6 +44,16 @@ const NavList = ({ isAuth, menu, signOutStart }) => {
           >
             <i className="fad fa-hand-holding-usd"></i>
             {!menu && <p>Deposit Funds</p>}
+          </li>
+        </NavLink>
+        <NavLink activeclassname="active" className="list" to="/investment">
+          <li
+            style={
+              menu ? { justifyContent: "center", padding: "1rem 0 1rem 0" } : {}
+            }
+          >
+            <i className="fad fa-sack-dollar"></i>
+            {!menu && <p>Investment</p>}
           </li>
         </NavLink>
         <NavLink activeclassname="active" className="list" to="/withdraw-funds">
@@ -80,14 +80,14 @@ const NavList = ({ isAuth, menu, signOutStart }) => {
             {!menu && <p>Internal Transfers</p>}
           </li>
         </NavLink>
-        <NavLink activeclassname="active" className="list" to="/investment">
+        <NavLink activeclassname="active" className="list " to="/my-transfers">
           <li
             style={
               menu ? { justifyContent: "center", padding: "1rem 0 1rem 0" } : {}
             }
           >
-            <i className="fad fa-sack-dollar"></i>
-            {!menu && <p>Investment</p>}
+            <i className="fad fa-exchange"></i>
+            {!menu && <p>My Transfers</p>}
           </li>
         </NavLink>
         <NavLink activeclassname="active" className="list" to="/referrals">

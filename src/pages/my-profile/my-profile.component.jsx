@@ -10,12 +10,12 @@ import { selectCurrentUser } from "../../redux/user/user.selector";
 import { fetchUserStart } from "../../redux/user/user.actions";
 
 const MyProfile = ({ menu, user, fetchUserStart }) => {
-  window.scroll(0, 0);
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
   const [loadBar, setLoadBar] = useState();
   useMemo(() => {
     fetchUserStart();
+    window.scroll(0, 0);
   }, [fetchUserStart]);
   useMemo(() => {
     // fetchUserStart();
@@ -52,14 +52,14 @@ const MyProfile = ({ menu, user, fetchUserStart }) => {
             <h1>Contact Information</h1>
           </div>
           <div className="line1"></div>
-          <div className="my-profile__content--box2__content">
+          <div className="my-profile__content--box2__contents">
             <div className="my-profile__content--box2__contents--1">
               <p>Email</p>
               <p>{user.email}</p>
             </div>
             <div className="my-profile__content--box2__contents--2">
-              <p>My subscriptions</p>
-              <p>None</p>
+              <p>My Investment</p>
+              <p>{user.investment.is_active ? user.investment.plan : "None"}</p>
             </div>
             <div className="my-profile__content--box2__contents--3">
               <p>Change MyFXTM password</p>

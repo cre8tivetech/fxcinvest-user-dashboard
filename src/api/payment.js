@@ -6,7 +6,8 @@ export const createBitcoinInvoiceApi = async (token, price) => {
     Authorization: "Token " + token,
   };
   const url =
-    process.env.REACT_APP_API + process.env.REACT_APP_CREATE_BITCOIN_INVOICE;
+    process.env.REACT_APP_API +
+    process.env.REACT_APP_CREATE_COINPAYMENTS_INVOICE;
   const collectionsMap = await Axios.post(
     url,
     {

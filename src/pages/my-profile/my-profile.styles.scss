@@ -136,9 +136,13 @@
         }
       }
 
-      &__content {
+      &__contents {
         display: flex;
         flex-direction: column;
+
+        &--2 {
+          text-transform: capitalize;
+        }
 
         &>* {
           display: flex;

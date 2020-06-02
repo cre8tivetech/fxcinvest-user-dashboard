@@ -21,6 +21,7 @@ import {
   fetchUserStart,
   setInvestData,
   setMessage,
+  expireBitCoinInvoice,
 } from "../../redux/user/user.actions";
 import { Link } from "react-router-dom";
 
@@ -31,8 +32,8 @@ const Dashboard = ({
   fetchUserStart,
   setInvestData,
   setMessage,
+  expireBitCoinInvoice,
 }) => {
-  window.scroll(0, 0);
   const [width, setWidth] = useState();
   const [loadBar, setLoadBar] = useState();
   const { wallet, investment } = user;
@@ -64,22 +65,26 @@ const Dashboard = ({
     }
   }, [expire_at, is_active]);
   // Random component
-  const Completed = () => 0;
+  // const Completed = () => 0;
 
   // Renderer callback with condition
-  const renderer = ({ months, days, hours, minutes, seconds, completed }) => {
-    if (completed) {
-      // Render a completed state
-      return <Completed />;
-    } else {
-      // Render a countdown
-      return (
-        <span>
-          {days}:{hours}:{minutes}:{seconds}
-        </span>
-      );
-    }
-  };
+  // const renderer = ({ months, days, hours, minutes, seconds, completed }) => {
+  //   if (completed) {
+  //     // Render a completed state
+  //     return <Completed />;
+  //   } else {
+  //     // Render a countdown
+  //     return (
+  //       <span>
+  //         {days}:{hours}:{minutes}:{seconds}
+  //       </span>
+  //     );
+  //   }
+  // };
+  useMemo(() => {
+    expireBitCoinInvoice();
+    window.scroll(0, 0);
+  }, [expireBitCoinInvoice]);
   useMemo(() => {
     daysRemaining();
   }, [daysRemaining]);
@@ -173,5 +178,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUserStart: () => dispatch(fetchUserStart()),
   setInvestData: (data) => dispatch(setInvestData(data)),
   setMessage: (data) => dispatch(setMessage(data)),
+  expireBitCoinInvoice: () => dispatch(expireBitCoinInvoice()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
