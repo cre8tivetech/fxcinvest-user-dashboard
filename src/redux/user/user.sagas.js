@@ -185,7 +185,7 @@ export function* isResetPassword({ payload: { token, new_password } }) {
       setMessage({
         type: "error",
         message: error.response
-          ? error.response.data.message || error.response.data.error
+          ? error.response.data.detail || error.response.data.message || error.response.data.error
           : "Oops!!, Poor internet connection, Please check your connectivity, And try again",
       })
     );
@@ -216,7 +216,7 @@ export function* signUp({ payload: { userName, email, password } }) {
     yield put(
       signUpFailure(
         error.response
-          ? error.response.data.message || error.response.data.error
+          ? error.response.data.detail || error.response.data.message || error.response.data.error
           : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
       )
     );
@@ -253,7 +253,7 @@ export function* isCreateBitCoinInvoice({ payload: amount }) {
     yield put(
       signUpFailure(
         error.response
-          ? error.response.data.message || error.response.data.error
+          ? error.response.data.detail || error.response.data.message || error.response.data.error
           : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
       )
     );
@@ -277,7 +277,7 @@ export function* isTransfer({ payload: { amount, username } }) {
     yield put(
       signUpFailure(
         error.response
-          ? error.response.data.message || error.response.data.error
+          ? error.response.data.detail || error.response.data.message || error.response.data.error
           : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
       )
     );
@@ -313,7 +313,7 @@ export function* isBitcoinWithdrawal({
         error.response
           ? {
               type: error.response.data.status,
-              message: error.response.data.message || error.response.data.error,
+              message: error.response.data.detail || error.response.data.message || error.response.data.error,
             }
           : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
       )
@@ -352,7 +352,7 @@ export function* isInvest({ payload: { plan, amount } }) {
         error.response
           ? {
               type: "error",
-              message: error.response.data.message || error.response.data.error,
+              message: error.response.data.detail || error.response.data.message || error.response.data.error,
             }
           : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
       )
