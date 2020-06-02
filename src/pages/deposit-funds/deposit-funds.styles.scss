@@ -106,10 +106,6 @@
       font-size: 1.3rem;
       color: var(--primary-color);
 
-      .comingSoon {
-        background-color: var(--tertiary-color);
-      }
-
       @include respond(tabPort) {
         font-size: 1.2rem;
       }

@@ -33,7 +33,6 @@ const Confirm = ({ menu, user, setMessage, message }) => {
     window.scroll(0, 0);
   }, []);
   useMemo(() => {
-    console.log(message);
     if (menu) device.matches ? setWidth("100%") : setWidth("93%");
     if (!menu)
       if (device.matches) {

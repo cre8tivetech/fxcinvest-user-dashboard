@@ -52,7 +52,6 @@ const Confirm = ({ menu, user, setMessage, message }) => {
     }
   }, [expire_at, message]);
   useMemo(() => {
-    console.log(message);
     if (menu) device.matches ? setWidth("100%") : setWidth("93%");
     if (!menu)
       if (device.matches) {

@@ -96,17 +96,49 @@ const MyTransfers = ({ menu, user }) => {
 
         <div className="line3"></div> */}
         <p>You didn't make any transfer yet</p>
-        <div className="my-transfers__box--btn ripple1">Deposit Now</div>
+        {user.is_email_confrim ? (
+          <div className="my-transfers__box--btn ripple1">Deposit Now</div>
+        ) : (
+          <div
+            data-tooltip="Confirm your email first"
+            data-tooltip-location="right"
+            className="my-transfers__box--btn comingSoon"
+          >
+            Deposit Now
+          </div>
+        )}
       </div>
       <div className="my-transfers__box">
         <h1>Withdrawals</h1>
         <div className="line1"></div>
-        <p>You didn't make any transfer yet</p>
+        <p>You didn't make any withdraw yet</p>
+        {user.is_email_confrim ? (
+          <div className="my-transfers__box--btn ripple1">Withdraw Now</div>
+        ) : (
+          <div
+            data-tooltip="Confirm your email first"
+            data-tooltip-location="right"
+            className="my-transfers__box--btn comingSoon"
+          >
+            Withdraw Now
+          </div>
+        )}
       </div>
       <div className="my-transfers__box">
         <h1>Internal transfers</h1>
         <div className="line1"></div>
         <p>You didn't make any transfer yet</p>
+        {user.is_email_confrim ? (
+          <div className="my-transfers__box--btn ripple1">Transfer Now</div>
+        ) : (
+          <div
+            data-tooltip="Confirm your email first"
+            data-tooltip-location="right"
+            className="my-transfers__box--btn comingSoon"
+          >
+            Transfer Now
+          </div>
+        )}
       </div>
       <div className="my-transfers__withdrawals"></div>
       <div className="my-transfers__internal"></div>

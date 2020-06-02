@@ -40,7 +40,6 @@ const AuthLoader = ({ signInByTokenStart, currentUser, setLoading }) => {
       if (currentUser) {
         // setText("Redirecting to Your Dashboard.....");
         history.push("/");
-        currentUser && console.log(currentUser);
       }
     }
     // console.log(data);
