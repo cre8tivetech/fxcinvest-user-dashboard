@@ -13,10 +13,12 @@ import { selectCurrentUser } from "../../redux/user/user.selector";
 import { setMessage } from "../../redux/user/user.actions";
 
 const WithdrawFunds = ({ menu, user, setMessage }) => {
-  window.scroll(0, 0);
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
   const [loadBar, setLoadBar] = useState();
+  useMemo(() => {
+    window.scroll(0, 0);
+  }, []);
   useMemo(() => {
     if (menu) device.matches ? setWidth("100%") : setWidth("93%");
     if (!menu)
@@ -72,9 +74,23 @@ const WithdrawFunds = ({ menu, user, setMessage }) => {
           <div className="withdraw-funds__box--content__3">
             <p>24 hours</p>
           </div>
-          <div className="withdraw-funds__box--content__4 ripple1">
-            <p>Withdraw</p>
-          </div>
+          {user.is_email_confrim ? (
+            <div
+              data-tooltip="Coming soon"
+              data-tooltip-location="top"
+              className="withdraw-funds__box--content__4 comingSoon"
+            >
+              <p>Withdraw</p>
+            </div>
+          ) : (
+            <div
+              data-tooltip="Confirm your email first"
+              data-tooltip-location="left"
+              className="withdraw-funds__box--content__4 comingSoon"
+            >
+              <p>Withdraw</p>
+            </div>
+          )}
         </div>
         <div className="line3"></div>
       </div>
@@ -108,13 +124,22 @@ const WithdrawFunds = ({ menu, user, setMessage }) => {
           <div className="withdraw-funds__box--content__3">
             <p>24 hours</p>
           </div>
-
-          <Link
-            to="/withdraw-funds/withdraw"
-            className="withdraw-funds__box--content__4 ripple1"
-          >
-            <p>Withdraw</p>
-          </Link>
+          {user.is_email_confrim ? (
+            <Link
+              to="/withdraw-funds/withdraw"
+              className="withdraw-funds__box--content__4 ripple1"
+            >
+              <p>Withdraw</p>
+            </Link>
+          ) : (
+            <div
+              data-tooltip="Confirm your email first"
+              data-tooltip-location="left"
+              className="withdraw-funds__box--content__4 comingSoon"
+            >
+              <p>Withdraw</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="withdraw-funds__bottom">

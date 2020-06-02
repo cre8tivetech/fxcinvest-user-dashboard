@@ -30,12 +30,12 @@
   width: -moz-max-content;
   border-radius: 6px;
   font-size: 12px;
-/*   font-size: 0.73rem; */
+  /*   font-size: 0.73rem; */
   background-color: rgba(#4D4D4D, 0.9);
   background-image: linear-gradient(30deg,
-    rgba(112, 112, 112, 0.44),
-    rgba(112, 112, 112, 0.44),
-    rgba(112, 112, 112, 0.44));
+      rgba(112, 112, 112, 0.44),
+      rgba(112, 112, 112, 0.44),
+      rgba(112, 112, 112, 0.44));
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
   color: #fff;
   text-align: center;
@@ -49,10 +49,12 @@
   border-style: solid;
   border-width: 5px 5px 0px 5px;
   border-color: rgba(#4D4D4D, 0.9) transparent transparent transparent;
-  transition-duration: 0s; /* If the mouse leaves the element, 
+  transition-duration: 0s;
+  /* If the mouse leaves the element, 
                               the transition effects for the 
                               tooltip arrow are "turned off" */
-  transform-origin: top;   /* Orientation setting for the
+  transform-origin: top;
+  /* Orientation setting for the
                               slide-down effect */
   transform: translateX(-50%) scaleY(0);
 }
@@ -63,17 +65,21 @@
   visibility: visible;
   opacity: 1;
 }
+
 /* Scales from 0.5 to 1 -> grow effect */
 [data-tooltip]:hover:before {
   transition-delay: 0.3s;
   transform: translate(-50%, -5px) scale(1);
 }
+
 /* Slide down effect only on mouseenter (NOT on mouseleave) */
 [data-tooltip]:hover:after {
-  transition-delay: 0.5s; /* Starting after the grow effect */
+  transition-delay: 0.5s;
+  /* Starting after the grow effect */
   transition-duration: 0.2s;
   transform: translateX(-50%) scaleY(1);
 }
+
 /*
   That's it.
 */
@@ -101,6 +107,7 @@
 [data-tooltip-location="left"]:before {
   transform: translate(-5px, 50%) scale(0.5);
 }
+
 [data-tooltip-location="left"]:hover:before {
   transform: translate(-5px, 50%) scale(1);
 }
@@ -112,6 +119,7 @@
   transform-origin: left;
   transform: translateY(50%) scaleX(0);
 }
+
 [data-tooltip-location="left"]:hover:after {
   transform: translateY(50%) scaleX(1);
 }
@@ -128,6 +136,7 @@
 [data-tooltip-location="right"]:before {
   transform: translate(5px, 50%) scale(0.5);
 }
+
 [data-tooltip-location="right"]:hover:before {
   transform: translate(5px, 50%) scale(1);
 }
@@ -138,6 +147,7 @@
   transform-origin: right;
   transform: translateY(50%) scaleX(0);
 }
+
 [data-tooltip-location="right"]:hover:after {
   transform: translateY(50%) scaleX(1);
 }
@@ -154,6 +164,7 @@
 [data-tooltip-location="bottom"]:before {
   transform: translate(-50%, 5px) scale(0.5);
 }
+
 [data-tooltip-location="bottom"]:hover:before {
   transform: translate(-50%, 5px) scale(1);
 }
@@ -162,4 +173,8 @@
   border-width: 0px 5px 5px 5px;
   border-color: transparent transparent rgba(#4D4D4D, 0.9) transparent;
   transform-origin: bottom;
+}
+
+.comingSoon {
+  background-color: var(--tertiary-color) !important;
 }

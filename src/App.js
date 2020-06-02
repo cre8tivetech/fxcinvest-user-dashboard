@@ -27,8 +27,6 @@ import Layout from "./components/layout/layout.component";
 import Deposit from "./pages/deposit-funds/deposit.component";
 import PopUp from "./components/message/popup.component";
 import CountDowns from "./components/countdowns/countdowns.component";
-// import Pay from "./pages/deposit-funds/pay.component";
-// import Pay from "./pages/deposit-funds/pay.component";
 
 function App({ isLoading, checkAuth, checkUserSession, user, bitcoinInvoice }) {
   useMemo(() => {
@@ -46,11 +44,19 @@ function App({ isLoading, checkAuth, checkUserSession, user, bitcoinInvoice }) {
             <CountDowns />
             <PopUp />
             <Switch>
+              {/* is_email_confrim */}
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/auth/:data" component={AuthSpinner} />
               <Route exact path="/my-transfers" component={MyTransfers} />
               <Route exact path="/deposit-funds" component={DepositFunds} />
-              <Route exact path="/deposit-funds/deposit" component={Deposit} />
+              <Route
+                exact
+                path="/deposit-funds/deposit"
+                render={() =>
+                  user.is_email_confrim ? <Deposit /> : <Error404 />
+                }
+                // component={Deposit}
+              />
               <Route
                 exact
                 path="/deposit-funds/pay"
@@ -61,18 +67,21 @@ function App({ isLoading, checkAuth, checkUserSession, user, bitcoinInvoice }) {
                 exact
                 path="/deposit-funds/pay/success"
                 render={() => (bitcoinInvoice ? <Deposit /> : <Error404 />)}
-                // component={Deposit}
               />
               <Route exact path="/withdraw-funds" component={WithdrawFunds} />
               <Route
                 exact
                 path="/withdraw-funds/withdraw"
-                component={Withdraw}
+                render={() =>
+                  user.is_email_confrim ? <Withdraw /> : <Error404 />
+                }
               />
               <Route
                 exact
                 path="/withdraw-funds/confirm"
-                component={Withdraw}
+                render={() =>
+                  user.is_email_confrim ? <Withdraw /> : <Error404 />
+                }
               />
               <Route
                 exact
@@ -80,14 +89,22 @@ function App({ isLoading, checkAuth, checkUserSession, user, bitcoinInvoice }) {
                 component={InternalTransfers}
               />
               <Route exact path="/investment" component={Investment} />
-              <Route exact path="/investment/invest" component={Invest} />
-              <Route exact path="/investment/confirm" component={Invest} />
+              <Route
+                exact
+                path="/investment/invest"
+                render={() =>
+                  user.is_email_confrim ? <Invest /> : <Error404 />
+                }
+              />
+              <Route
+                exact
+                path="/investment/confirm"
+                render={() =>
+                  user.is_email_confrim ? <Invest /> : <Error404 />
+                }
+              />
               <Route exact path="/referrals" component={Referrals} />
               <Route exact path="/my-profile" component={MyProfile} />
-              <Route
-                path="/test-page"
-                render={() => <p>Routing test page</p>}
-              />
               <Route path="*" component={Error404} />
             </Switch>
           </Layout>

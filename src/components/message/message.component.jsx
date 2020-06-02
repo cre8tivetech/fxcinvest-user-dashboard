@@ -21,7 +21,6 @@ const Message = ({ user, resendConfirmEmailStart, success }) => {
 
   useEffect(() => {
     if (success) {
-      console.log(success);
       setResendBtn(success);
       setTimeout(() => {
         setResendBtn("Resend Confirm Email");

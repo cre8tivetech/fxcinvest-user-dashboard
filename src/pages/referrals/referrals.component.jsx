@@ -10,7 +10,6 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 
 const Referrals = ({ menu, user }) => {
-  window.scroll(0, 0);
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
   const [loadBar, setLoadBar] = useState();
@@ -23,6 +22,9 @@ const Referrals = ({ menu, user }) => {
         setWidth(null);
       }
   }, [device.matches, menu]);
+  useMemo(() => {
+    window.scroll(0, 0);
+  }, []);
   useEffect(() => {
     setLoadBar(100);
   }, [memorizedValue]);

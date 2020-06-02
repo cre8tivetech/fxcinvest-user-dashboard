@@ -122,9 +122,20 @@ const InternalTransfers = ({ menu, user, transferStart, popUp }) => {
           </p>
         </div>
         <div className="internal-transfers__btn">
-          <button type="submit">
-            <p className="ripple1">{confirmBtn}</p>
-          </button>
+          {user.is_email_confrim ? (
+            <button type="submit">
+              <p className="ripple1">{confirmBtn}</p>
+            </button>
+          ) : (
+            <div
+              data-tooltip="Confirm your email first"
+              data-tooltip-location="right"
+            >
+              <button>
+                <p className="comingSoon">Confirm</p>
+              </button>
+            </div>
+          )}
         </div>
       </form>
     </div>

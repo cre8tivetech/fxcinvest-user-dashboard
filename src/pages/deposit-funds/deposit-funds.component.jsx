@@ -14,10 +14,12 @@ import { selectCurrentUser } from "../../redux/user/user.selector";
 import { expireBitCoinInvoice } from "../../redux/user/user.actions";
 
 const DepositFunds = ({ menu, user, expireBitCoinInvoice }) => {
-  window.scroll(0, 0);
   const [width, setWidth] = useState();
   const device = window.matchMedia("(max-width: 600px)");
   const [loadBar, setLoadBar] = useState();
+  useMemo(() => {
+    window.scroll(0, 0);
+  }, []);
   useMemo(() => {
     if (menu) device.matches ? setWidth("100%") : setWidth("93%");
     if (!menu)
@@ -133,12 +135,22 @@ const DepositFunds = ({ menu, user, expireBitCoinInvoice }) => {
           <div className="deposit-funds__box--content__3">
             <p>24 Hours</p>
           </div>
-          <Link
-            to="/deposit-funds/deposit"
-            className="deposit-funds__box--content__4 ripple1"
-          >
-            <p>Deposit</p>
-          </Link>
+          {user.is_email_confrim ? (
+            <Link
+              to="/deposit-funds/deposit"
+              className="deposit-funds__box--content__4 ripple1"
+            >
+              <p>Deposit</p>
+            </Link>
+          ) : (
+            <div
+              data-tooltip="Confirm your email first"
+              data-tooltip-location="left"
+              className="deposit-funds__box--content__4 comingSoon"
+            >
+              <p>Deposit</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="deposit-funds__bottom">
