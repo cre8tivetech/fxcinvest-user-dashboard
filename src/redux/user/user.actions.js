@@ -55,6 +55,16 @@ export const transferStart = (data) => ({
   payload: data,
 });
 
+export const getTransfersStart = (data) => ({
+  type: UserActionTypes.GET_TRANSFERS_START,
+  payload: data,
+});
+
+export const getTransfersSuccess = (data) => ({
+  type: UserActionTypes.GET_TRANSFERS_SUCCESS,
+  payload: data,
+});
+
 export const bankWithdrawalStart = (data) => ({
   type: UserActionTypes.BANK_WITHDRAWAL_START,
   payload: data,
@@ -104,16 +114,6 @@ export const setToken = (token) => ({
   payload: token,
 });
 
-export const setDownloads = (data) => ({
-  type: UserActionTypes.SET_DOWNLOADS,
-  payload: data,
-});
-
-export const setSubscription = (subData) => ({
-  type: UserActionTypes.SET_SUBSCRIPTION,
-  payload: subData,
-});
-
 export const setMessage = (message) => ({
   type: UserActionTypes.SET_MESSAGE,
   payload: message,
@@ -122,24 +122,6 @@ export const setMessage = (message) => ({
 export const setLoading = (condition) => ({
   type: UserActionTypes.SET_LOADING,
   payload: condition,
-});
-
-export const setPaymentData = (txref) => ({
-  type: UserActionTypes.SET_PAYMENT_DATA,
-  payload: txref,
-});
-export const userPaymentStart = (txref) => ({
-  type: UserActionTypes.USER_PAYMENT_START,
-  payload: txref,
-});
-
-export const userPaymentSucesss = (ref) => ({
-  type: UserActionTypes.USER_PAYMENT_SUCCESS,
-});
-
-export const userPaymentFailure = (message) => ({
-  type: UserActionTypes.USER_PAYMENT_FAILURE,
-  payload: message,
 });
 
 export const signOutStart = () => ({

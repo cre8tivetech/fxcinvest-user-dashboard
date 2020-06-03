@@ -82,13 +82,17 @@ export const investApi = async (token, plan, capital) => {
   return collectionsMap;
 };
 
-export const getTransfersApi = async (token, uid) => {
+export const getTransfersApi = async (token, uid, query = "") => {
   const headers = {
     "Content-Type": "application/json",
     Authorization: "Token " + token,
   };
   const url =
-    process.env.REACT_APP_API + process.env.REACT_APP_GET_TRANSFERS + uid;
+    process.env.REACT_APP_API +
+    process.env.REACT_APP_GET_TRANSFERS +
+    uid +
+    "/" +
+    query;
   const collectionsMap = await Axios.get(url, {
     headers: headers,
   });

@@ -21,15 +21,16 @@ import {
   forgetPasswordSuccess,
   setToken,
   setPopUp,
-  createBitCoinInvoiceStart,
   createBitCoinInvoiceSuccess,
   fetchUserSuccess,
   resendConfirmEmailSuccess,
+  getTransfersSuccess,
 } from "./user.actions";
 import { createBitcoinInvoiceApi } from "../../api/payment";
 import {
   fetchUserApi,
   transferApi,
+  getTransfersApi,
   bitcoinWithdrawalApi,
   investApi,
 } from "../../api/api";
@@ -261,6 +262,30 @@ export function* isTransfer({ payload: { amount, username } }) {
   }
 }
 
+export function* isGetTransfers({ payload: query }) {
+  const token = yield select(userToken);
+  const uid = yield select(userId);
+  try {
+    const result = yield getTransfersApi(token, uid, query).then(function (
+      response
+    ) {
+      return response.data;
+    });
+    console.log(result);
+    yield put(getTransfersSuccess(result));
+  } catch (error) {
+    yield put(
+      signUpFailure(
+        error.response
+          ? error.response.data.detail ||
+              error.response.data.message ||
+              error.response.data.error
+          : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
+      )
+    );
+  }
+}
+
 export function* isBitcoinWithdrawal({
   payload: { amount, wallet_address, withdrawal_type, transaction_type },
 }) {
@@ -366,6 +391,10 @@ export function* onTransferStart() {
   yield takeLatest(UserActionTypes.TRANSFER_START, isTransfer);
 }
 
+export function* onGetTransfersStart() {
+  yield takeLatest(UserActionTypes.GET_TRANSFERS_START, isGetTransfers);
+}
+
 export function* onBitcoinWithdrawalStart() {
   yield takeLatest(
     UserActionTypes.BITCOIN_WITHDRAWAL_START,
@@ -411,6 +440,7 @@ export function* userSagas() {
     call(onFetchUser),
     call(onCreateBitCoinInvoiceStart),
     call(onTransferStart),
+    call(onGetTransfersStart),
     call(onBitcoinWithdrawalStart),
     call(onInvestStart),
     call(onSignInByTokenStart),
