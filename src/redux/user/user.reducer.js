@@ -4,10 +4,12 @@ const INITIAL_STATE = {
   success: null,
   error: null,
   isLoading: null,
+  isSearching: null,
   isAuth: null,
   token: null,
   currentUser: null,
   popUp: null,
+  my_transfers: null,
   bitCoinInvoice: null,
   investData: null,
 };
@@ -57,6 +59,23 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         bitCoinInvoice: null,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.GET_TRANSFERS_START:
+      return {
+        ...state,
+        isSearching: true,
+        message: null,
+        error: null,
+        success: null,
+      };
+    case UserActionTypes.GET_TRANSFERS_SUCCESS:
+      return {
+        ...state,
+        my_transfers: action.payload,
+        isSearching: false,
+        message: null,
         error: null,
         success: null,
       };

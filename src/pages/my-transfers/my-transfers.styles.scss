@@ -53,11 +53,10 @@
     align-self: center;
     display: flex;
     flex-direction: row;
-    // flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     border: 2px solid var(--card-color1);
-    margin-bottom: 5rem;
-    padding: 2rem 0;
+    margin-bottom: 1rem;
+    padding: 2rem 1rem;
 
     @include respond(screenMenu) {
       flex-wrap: wrap;
@@ -68,7 +67,7 @@
     }
 
     @include respond(tabPort) {
-      justify-content: space-evenly;
+      justify-content: space-between;
       width: 95%;
       padding-top: 1rem;
 
@@ -162,7 +161,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
     align-self: center;
     border: 2px solid var(--card-color1);
     padding: 2rem;
@@ -177,7 +175,89 @@
       padding: 0.7rem;
     }
 
+    &--header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      font-size: 1.4rem;
+      color: var(--primary-color);
+
+      @include respond(tabPort) {
+        font-size: 1.2rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.05rem;
+      }
+
+
+      &__1 {
+        flex-basis: 10%;
+      }
+
+      &__2 {
+        flex-basis: 10%;
+      }
+
+      &__3 {
+        flex-basis: 10%;
+      }
+
+      &__4 {
+        flex-basis: 10%;
+      }
+
+      &__5 {
+        flex-basis: 10%;
+      }
+    }
+
+    &--content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: 1.3rem;
+      // color: var(--primary-color);
+      color: var(--tertiary-color);
+      padding: 1rem 0;
+
+      @include respond(tabPort) {
+        font-size: 1.2rem;
+      }
+
+      @include respond(phone) {
+        font-size: 1.1rem;
+      }
+
+      &__1 {
+        flex-basis: 15%;
+      }
+
+      &__2 {
+        flex-basis: 15%;
+      }
+
+      &__3 {
+        flex-basis: 15%;
+      }
+
+      &__4 {
+        flex-basis: 15%;
+      }
+
+      &__5 {
+        flex-basis: 10%;
+      }
+    }
+
+    .box {
+      display: flex;
+      flex-direction: column;
+    }
+
     &--btn {
+      align-self: flex-start;
       color: white;
       padding: 1rem 2rem;
       margin-top: 1.5rem;
@@ -197,7 +277,7 @@
 
     h1 {
       font-size: 2rem;
-
+      align-self: flex-start;
 
       @include respond(screenMenu) {
         font-size: 1.8rem;
@@ -214,7 +294,6 @@
 
     p {
       font-size: 1.3rem;
-      color: var(--tertiary-color);
       text-align: start;
 
       @include respond(screenMenu) {

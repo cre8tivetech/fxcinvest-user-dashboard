@@ -14,6 +14,11 @@ export const selectBitCoinInvoice = createSelector(
   (user) => user.bitCoinInvoice
 );
 
+export const selectMyTransfers = createSelector(
+  [selectUser],
+  (user) => user.my_transfers
+);
+
 export const selectToken = createSelector([selectUser], (user) => user.token);
 export const selectIsAuth = createSelector([selectUser], (user) => user.isAuth);
 
