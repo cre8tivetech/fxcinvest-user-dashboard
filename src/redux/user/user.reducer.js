@@ -83,6 +83,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         investData: action.payload,
+        my_transfers: null,
         error: null,
         success: null,
         popUp: null,

@@ -115,36 +115,37 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
         </div>
         <div className="line2"></div>
 
-        {my_transfers.deposit.map((list, i) => (
-          <div className="box-list">
-            <div className="my-transfers__box--content">
-              <div className="my-transfers__box--content__1">
-                <p>{list.ref_id}</p>
+        {my_transfers &&
+          my_transfers.deposit.map((list, i) => (
+            <div className="box-list">
+              <div className="my-transfers__box--content">
+                <div className="my-transfers__box--content__1">
+                  <p>{list.ref_id}</p>
+                </div>
+                <div className="my-transfers__box--content__2">
+                  <p>{list.status}</p>
+                </div>
+                <div className="my-transfers__box--content__3">
+                  <p>${list.amount}</p>
+                </div>
+                <div className="my-transfers__box--content__4">
+                  <p>{list.currency}</p>
+                </div>
+                <div className="my-transfers__box--content__5">
+                  <p>{createdAt(list.created_at)}</p>
+                </div>
               </div>
-              <div className="my-transfers__box--content__2">
-                <p>{list.status}</p>
-              </div>
-              <div className="my-transfers__box--content__3">
-                <p>${list.amount}</p>
-              </div>
-              <div className="my-transfers__box--content__4">
-                <p>{list.currency}</p>
-              </div>
-              <div className="my-transfers__box--content__5">
-                <p>{createdAt(list.created_at)}</p>
-              </div>
+              <div className="line3"></div>
             </div>
-            <div className="line3"></div>
-          </div>
-        ))}
+          ))}
         {/* <div className="line3"></div> */}
 
         {user.is_email_confrim ? (
           <div className="box">
-            {!my_transfers.deposit.length && (
+            {my_transfers && !my_transfers.deposit.length && (
               <p>You didn't make any deposit yet</p>
             )}
-            {!my_transfers.deposit.length && (
+            {my_transfers && !my_transfers.deposit.length && (
               <div className="my-transfers__box--btn ripple1">Deposit Now</div>
             )}
           </div>
@@ -180,7 +181,8 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
         </div>
         <div className="line2"></div>
 
-        {my_transfers.withdrawal.length !== 0 &&
+        {my_transfers &&
+          my_transfers.withdrawal.length !== 0 &&
           my_transfers.withdrawal.map((list, i) => (
             <div className="box-list">
               <div className="my-transfers__box--content">
@@ -207,10 +209,10 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
 
         {user.is_email_confrim ? (
           <div className="box">
-            {!my_transfers.withdrawal.length && (
+            {my_transfers && !my_transfers.withdrawal.length && (
               <p>You didn't make any withdrawal yet</p>
             )}
-            {!my_transfers.withdrawal.length && (
+            {my_transfers && !my_transfers.withdrawal.length && (
               <div className="my-transfers__box--btn ripple1">Withdraw Now</div>
             )}
           </div>
@@ -246,36 +248,37 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
         </div>
         <div className="line2"></div>
 
-        {my_transfers.transfer.map((list, i) => (
-          <div className="box-list">
-            <div className="my-transfers__box--content">
-              <div className="my-transfers__box--content__1">
-                <p>{list.ref_id}</p>
+        {my_transfers &&
+          my_transfers.transfer.map((list, i) => (
+            <div className="box-list">
+              <div className="my-transfers__box--content">
+                <div className="my-transfers__box--content__1">
+                  <p>{list.ref_id}</p>
+                </div>
+                <div className="my-transfers__box--content__2">
+                  <p>{list.status}</p>
+                </div>
+                <div className="my-transfers__box--content__3">
+                  <p>${list.amount}</p>
+                </div>
+                <div className="my-transfers__box--content__4">
+                  <p>{list.currency}</p>
+                </div>
+                <div className="my-transfers__box--content__5">
+                  <p>{createdAt(list.transfered_at)}</p>
+                </div>
               </div>
-              <div className="my-transfers__box--content__2">
-                <p>{list.status}</p>
-              </div>
-              <div className="my-transfers__box--content__3">
-                <p>${list.amount}</p>
-              </div>
-              <div className="my-transfers__box--content__4">
-                <p>{list.currency}</p>
-              </div>
-              <div className="my-transfers__box--content__5">
-                <p>{createdAt(list.transfered_at)}</p>
-              </div>
+              <div className="line3"></div>
             </div>
-            <div className="line3"></div>
-          </div>
-        ))}
+          ))}
         {/* <div className="line3"></div> */}
 
         {user.is_email_confrim ? (
           <div className="box">
-            {!my_transfers.transfer.length && (
+            {my_transfers && !my_transfers.transfer.length && (
               <p>You didn't make any transfer yet</p>
             )}
-            {!my_transfers.transfer.length && (
+            {my_transfers && !my_transfers.transfer.length && (
               <div className="my-transfers__box--btn ripple1">Deposit Now</div>
             )}
           </div>
