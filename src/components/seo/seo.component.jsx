@@ -2,9 +2,9 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 const SEO = ({ title, lang }) => {
-  const metaDescription = "A forex and crypto trading investment web app";
+  const metaDescription = "A forex and crypto trading investment company that gives access to the opportunities of trading without any technical skills, and minimum of time.";
   const siteTitle = "Fxcinvest";
-  const author = "@cre8tive_tech";
+  const author = "@fxcinvest";
 
   return (
     <Helmet
