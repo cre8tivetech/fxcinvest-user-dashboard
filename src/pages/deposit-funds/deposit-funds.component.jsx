@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./deposit-funds.styles.scss";
 import Message from "../../components/message/message.component";
 import VisaImg from "../../assets/img/visa_1.svg";
@@ -35,6 +36,7 @@ const DepositFunds = ({ menu, user, expireBitCoinInvoice }) => {
   }, [expireBitCoinInvoice]);
   return (
     <div className="deposit-funds" style={{ width: width }}>
+      <SEO title="Deposit Funds" />
       <LoadingBar
         progress={loadBar}
         height={3}

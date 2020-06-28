@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./investment.styles.scss";
 import InvestImg from "../../assets/img/invest.svg";
 import Message from "../../components/message/message.component";
@@ -127,6 +128,7 @@ const Invest = ({
 
   return (
     <div className="invest" style={{ width: width }}>
+      <SEO title="Select investment plan" />
       <LoadingBar
         progress={loadBar}
         height={3}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./withdraw-funds.styles.scss";
 import Message from "../../components/message/message.component";
 import BankTransferImg from "../../assets/img/bank_transfer.svg";
@@ -35,6 +36,7 @@ const WithdrawFunds = ({ menu, user, setMessage }) => {
 
   return (
     <div className="withdraw-funds" style={{ width: width }}>
+      <SEO title="Withdraw Funds" />
       <LoadingBar
         progress={loadBar}
         height={3}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./referrals.styles.scss";
 import Message from "../../components/message/message.component";
 import Referral from "../../components/referral/referral.component";
@@ -30,6 +31,7 @@ const Referrals = ({ menu, user }) => {
   }, [memorizedValue]);
   return (
     <div className="referrals" style={{ width: width }}>
+      <SEO title="Referrals" />
       <LoadingBar
         progress={loadBar}
         height={3}

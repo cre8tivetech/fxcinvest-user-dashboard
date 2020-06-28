@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./my-transfers.styles.scss";
 import Message from "../../components/message/message.component";
 import { connect } from "react-redux";
@@ -58,6 +59,7 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
   // ref_id / status / amount / currency / created_at
   return (
     <div className="my-transfers" style={{ width: width }}>
+      <SEO title="Transfers" />
       <LoadingBar
         progress={loadBar}
         height={3}

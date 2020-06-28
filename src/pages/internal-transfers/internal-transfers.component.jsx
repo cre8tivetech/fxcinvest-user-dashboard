@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./internal-transfers.styles.scss";
 import "../deposit-funds/deposit-funds.styles.scss";
 import TransferImg from "../../assets/img/transfer-icon.svg";
@@ -58,6 +59,7 @@ const InternalTransfers = ({ menu, user, transferStart, popUp }) => {
   };
   return (
     <div className="internal-transfers" style={{ width: width }}>
+      <SEO title="Transfer Funds" />
       <LoadingBar
         progress={loadBar}
         height={3}

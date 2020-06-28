@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./withdraw-funds.styles.scss";
 import BitCoinImg from "../../assets/img/Bitcoin_80px.svg";
 import Message from "../../components/message/message.component";
@@ -131,6 +132,7 @@ const Withdraw = ({
 
   return (
     <div className="withdraw" style={{ width: width }}>
+      <SEO title="Withdraw Funds" />
       <LoadingBar
         progress={loadBar}
         height={3}

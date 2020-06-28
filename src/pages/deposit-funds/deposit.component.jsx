@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./deposit-funds.styles.scss";
 import BitCoinImg from "../../assets/img/Bitcoin_80px.svg";
 import Message from "../../components/message/message.component";
@@ -128,6 +129,7 @@ const Deposit = ({
 
   return (
     <div className="deposit" style={{ width: width }}>
+      <SEO title="Deposit Funds" />
       <LoadingBar
         progress={loadBar}
         height={3}

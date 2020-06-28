@@ -37,7 +37,7 @@ const Investment = ({ menu, user, setMessage, setInvestData }) => {
         color="linear-gradient(92deg, var(--secondary-color) 0%, var(--primary-color-2) 50%, var(--secondary-color-2) 100%)"
         onLoaderFinished={() => setLoadBar(0)}
       />
-      <SEO title="Get all investment plans" />
+      <SEO title="Select investment plan" />
       {!user.is_email_confrim && <Message />}
       <div className="investment__title">
         <h1>Select Investment Plan</h1>

@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import EarnImg from "../../assets/img/stack-of-coins.svg";
 import RefImg from "../../assets/img/moneyPercentage.svg";
 import InvImg from "../../assets/img/profits.svg";
@@ -108,6 +109,7 @@ const Dashboard = ({
   return (
     <Suspense fallback={<AuthSpinner />}>
       <div className="dashboard" style={{ width: width }}>
+        <SEO title="Dashboard" />
         <LoadingBar
           progress={loadBar}
           height={3}

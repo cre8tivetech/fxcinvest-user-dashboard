@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import LoadingBar from "react-top-loading-bar";
+import SEO from "../../components/seo/seo.component";
 import "./my-profile.styles.scss";
 import Message from "../../components/message/message.component";
 import Referral from "../../components/referral/referral.component";
@@ -32,6 +33,7 @@ const MyProfile = ({ menu, user, fetchUserStart }) => {
   }, []);
   return (
     <div className="my-profile" style={{ width: width }}>
+      <SEO title="Profile" />
       <LoadingBar
         progress={loadBar}
         height={3}
