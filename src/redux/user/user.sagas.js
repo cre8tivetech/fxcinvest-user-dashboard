@@ -251,13 +251,14 @@ export function* isTransfer({ payload: { amount, username } }) {
     }
   } catch (error) {
     yield put(
-      signUpFailure(
-        error.response
+      setPopUp({
+        type: "error",
+        message: error.response
           ? error.response.data.detail ||
-              error.response.data.message ||
-              error.response.data.error
-          : "Oops!!, Poor internet connection, Please check your connectivity, And try again"
-      )
+            error.response.data.message ||
+            error.response.data.error
+          : "Oops!!, Poor internet connection, Please check your connectivity, And try again",
+      })
     );
   }
 }

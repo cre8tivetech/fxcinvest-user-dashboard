@@ -108,6 +108,9 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
           <div className="my-transfers__box--header__3">
             <p>Amount</p>
           </div>
+          <div className="my-transfers__box--header__3">
+            <p>BTC Amount</p>
+          </div>
           <div className="my-transfers__box--header__4">
             <p>Currency</p>
           </div>
@@ -129,6 +132,9 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
                 </div>
                 <div className="my-transfers__box--content__3">
                   <p>${list.amount}</p>
+                </div>
+                <div className="my-transfers__box--content__3">
+                  <p>${list.amount_in_btc}</p>
                 </div>
                 <div className="my-transfers__box--content__4">
                   <p>{list.currency}</p>
@@ -178,7 +184,10 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
             <p>Currency</p>
           </div>
           <div className="my-transfers__box--header__5">
-            <p>Withdraw_at</p>
+            <p>Created_at</p>
+          </div>
+          <div className="my-transfers__box--header__6">
+            <p>Paid_at</p>
           </div>
         </div>
         <div className="line2"></div>
@@ -201,7 +210,14 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
                   <p>{list.currency}</p>
                 </div>
                 <div className="my-transfers__box--content__5">
-                  <p>{createdAt(list.withdraw_at)}</p>
+                  <p>{createdAt(list.created_at)}</p>
+                </div>
+                <div className="my-transfers__box--content__6">
+                  {list.paid_at ? (
+                    <p>{createdAt(list.paid_at)}</p>
+                  ) : (
+                    <p>-----</p>
+                  )}
                 </div>
               </div>
               <div className="line3"></div>
@@ -241,6 +257,9 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
           <div className="my-transfers__box--header__3">
             <p>Amount</p>
           </div>
+          <div className="my-transfers__box--header__3">
+            <p>Transfer_to</p>
+          </div>
           <div className="my-transfers__box--header__4">
             <p>Currency</p>
           </div>
@@ -264,10 +283,13 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
                   <p>${list.amount}</p>
                 </div>
                 <div className="my-transfers__box--content__4">
-                  <p>{list.currency}</p>
+                  <p>{list.transfer_to}</p>
                 </div>
                 <div className="my-transfers__box--content__5">
-                  <p>{createdAt(list.transfered_at)}</p>
+                  <p>{list.currency}</p>
+                </div>
+                <div className="my-transfers__box--content__6">
+                  <p>{createdAt(list.created_at)}</p>
                 </div>
               </div>
               <div className="line3"></div>

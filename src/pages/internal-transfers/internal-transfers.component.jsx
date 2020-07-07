@@ -33,7 +33,10 @@ const InternalTransfers = ({ menu, user, transferStart, popUp }) => {
         setWidth(null);
       }
     if (popUp) {
-      setConfirmBtn("Transferred!");
+      console.log(popUp);
+      popUp.type === "error"
+        ? setConfirmBtn("Confirm")
+        : setConfirmBtn("Transferred!");
     } else {
       setConfirmBtn("Confirm");
     }
