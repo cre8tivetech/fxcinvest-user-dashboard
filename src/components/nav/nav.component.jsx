@@ -28,7 +28,7 @@ const Nav = ({ menu, user }) => {
   }, [device.matches, menu]);
 
   const goHome = () => {
-    window.location.assign(process.env.REACT_APP_HOME_URL);
+    window.location.assign(process.env.REACT_APP_HOME);
   };
 
   const capitalize = (s) => {
