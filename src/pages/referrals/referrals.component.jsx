@@ -40,7 +40,7 @@ const Referrals = ({ menu, user }) => {
       />
       {!user.is_email_confrim && <Message />}
       <div className="referrals__title">
-        <h1>Refer-A-Friend Program - Earn $50 Each</h1>
+        <h1>Refer-A-Friend Program - Earn $50</h1>
       </div>
       <div className="referrals__content">
         <div className="referrals__content--box1">

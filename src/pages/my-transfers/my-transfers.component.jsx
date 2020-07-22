@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import LoadingBar from "react-top-loading-bar";
+import Loader from 'react-loader-spinner'
 import SEO from "../../components/seo/seo.component";
 import "./my-transfers.styles.scss";
 import Message from "../../components/message/message.component";
@@ -11,6 +12,7 @@ import {
   selectMyTransfers,
 } from "../../redux/user/user.selector";
 import { getTransfersStart } from "../../redux/user/user.actions";
+import Transfers from "../../components/my-transfer/transfers.component";
 
 const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
   const [width, setWidth] = useState();
@@ -57,6 +59,16 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
     console.log(type);
   };
   // ref_id / status / amount / currency / created_at
+
+  const loader = (
+    <Loader
+         type="Puff"
+         color="#1d2d5f"
+         height={80}
+         width={80}
+      />
+  )
+
   return (
     <div className="my-transfers" style={{ width: width }}>
       <SEO title="Transfers" />
@@ -66,256 +78,49 @@ const MyTransfers = ({ menu, user, getTransfersStart, my_transfers }) => {
         color="linear-gradient(92deg, var(--secondary-color) 0%, var(--primary-color-2) 50%, var(--secondary-color-2) 100%)"
         onLoaderFinished={() => setLoadBar(0)}
       />
-      {!user.is_email_confrim && <Message />}
-      <div className="my-transfers__title">
-        <h1>My Transfers</h1>
-      </div>
-      <form className="my-transfers__type" onSubmit={handleSubmit}>
-        <div className="my-transfers__type--box1">
-          <p>Transfer Type</p>
+      
 
-          <select
-            name="type"
-            id="type"
-            required
-            value={type}
-            onChange={handleChange}
-          >
-            <option value="all">Select All</option>
-            <option value="?status=successful">Successful</option>
-            <option value="?status=pending">Pending</option>
-            <option value="?status=failed">Failed</option>
-          </select>
+      
+      {!my_transfers ?
+        loader
+        : 
+        <>
+        {!user.is_email_confrim && <Message />}
+        <div className="my-transfers__title">
+          <h1>My Transfers</h1>
         </div>
-        <button type="submit" className="my-transfers__type--box4 ripple1">
-          <div>
-            <i className="fa fa-search"></i>
-            <p>Search</p>
-          </div>
-        </button>
-      </form>
+        <form className="my-transfers__type" onSubmit={handleSubmit}>
+          <div className="my-transfers__type--box1">
+            <p>Transfer Type</p>
 
-      <div className="my-transfers__box">
-        <h1>Deposits</h1>
-        <div className="line1"></div>
-        <div className="my-transfers__box--header">
-          <div className="my-transfers__box--header__1">
-            <p>Ref_ID</p>
+            <select
+              name="type"
+              id="type"
+              required
+              value={type}
+              onChange={handleChange}
+            >
+              <option value="all">Select All</option>
+              <option value="?status=successful">Successful</option>
+              <option value="?status=pending">Pending</option>
+              <option value="?status=failed">Failed</option>
+            </select>
           </div>
-          <div className="my-transfers__box--header__2">
-            <p>Status</p>
-          </div>
-          <div className="my-transfers__box--header__3">
-            <p>Amount</p>
-          </div>
-          <div className="my-transfers__box--header__3">
-            <p>BTC Amount</p>
-          </div>
-          <div className="my-transfers__box--header__4">
-            <p>Currency</p>
-          </div>
-          <div className="my-transfers__box--header__5">
-            <p>Deposited_at</p>
-          </div>
-        </div>
-        <div className="line2"></div>
-
-        {my_transfers &&
-          my_transfers.deposit.map((list, i) => (
-            <div className="box-list">
-              <div className="my-transfers__box--content">
-                <div className="my-transfers__box--content__1">
-                  <p>{list.ref_id}</p>
-                </div>
-                <div className="my-transfers__box--content__2">
-                  <p>{list.status}</p>
-                </div>
-                <div className="my-transfers__box--content__3">
-                  <p>${list.amount}</p>
-                </div>
-                <div className="my-transfers__box--content__3">
-                  <p>${list.amount_in_btc}</p>
-                </div>
-                <div className="my-transfers__box--content__4">
-                  <p>{list.currency}</p>
-                </div>
-                <div className="my-transfers__box--content__5">
-                  <p>{createdAt(list.created_at)}</p>
-                </div>
-              </div>
-              <div className="line3"></div>
+          <button type="submit" className="my-transfers__type--box4 ripple1">
+            <div>
+              <i className="fa fa-search"></i>
+              <p>Search</p>
             </div>
-          ))}
-        {/* <div className="line3"></div> */}
-
-        {user.is_email_confrim ? (
-          <div className="box">
-            {my_transfers && !my_transfers.deposit.length && (
-              <p>You didn't make any deposit yet</p>
-            )}
-            {my_transfers && !my_transfers.deposit.length && (
-              <div className="my-transfers__box--btn ripple1">Deposit Now</div>
-            )}
-          </div>
-        ) : (
-          <div
-            data-tooltip="Confirm your email first"
-            data-tooltip-location="right"
-            className="my-transfers__box--btn comingSoon"
-          >
-            Deposit Now
-          </div>
-        )}
-      </div>
-      <div className="my-transfers__box">
-        <h1>Withdrawals</h1>
-        <div className="line1"></div>
-        <div className="my-transfers__box--header">
-          <div className="my-transfers__box--header__1">
-            <p>Ref_ID</p>
-          </div>
-          <div className="my-transfers__box--header__2">
-            <p>Status</p>
-          </div>
-          <div className="my-transfers__box--header__3">
-            <p>Amount</p>
-          </div>
-          <div className="my-transfers__box--header__4">
-            <p>Currency</p>
-          </div>
-          <div className="my-transfers__box--header__5">
-            <p>Created_at</p>
-          </div>
-          <div className="my-transfers__box--header__6">
-            <p>Paid_at</p>
-          </div>
-        </div>
-        <div className="line2"></div>
-
-        {my_transfers &&
-          my_transfers.withdrawal.length !== 0 &&
-          my_transfers.withdrawal.map((list, i) => (
-            <div className="box-list">
-              <div className="my-transfers__box--content">
-                <div className="my-transfers__box--content__1">
-                  <p>{list.ref_id}</p>
-                </div>
-                <div className="my-transfers__box--content__2">
-                  <p>{list.status}</p>
-                </div>
-                <div className="my-transfers__box--content__3">
-                  <p>${list.amount}</p>
-                </div>
-                <div className="my-transfers__box--content__4">
-                  <p>{list.currency}</p>
-                </div>
-                <div className="my-transfers__box--content__5">
-                  <p>{createdAt(list.created_at)}</p>
-                </div>
-                <div className="my-transfers__box--content__6">
-                  {list.paid_at ? (
-                    <p>{createdAt(list.paid_at)}</p>
-                  ) : (
-                    <p>-----</p>
-                  )}
-                </div>
-              </div>
-              <div className="line3"></div>
-            </div>
-          ))}
-        {/* <div className="line3"></div> */}
-
-        {user.is_email_confrim ? (
-          <div className="box">
-            {my_transfers && !my_transfers.withdrawal.length && (
-              <p>You didn't make any withdrawal yet</p>
-            )}
-            {my_transfers && !my_transfers.withdrawal.length && (
-              <div className="my-transfers__box--btn ripple1">Withdraw Now</div>
-            )}
-          </div>
-        ) : (
-          <div
-            data-tooltip="Confirm your email first"
-            data-tooltip-location="right"
-            className="my-transfers__box--btn comingSoon"
-          >
-            Withdraw Now
-          </div>
-        )}
-      </div>
-      <div className="my-transfers__box">
-        <h1>Internal transfers</h1>
-        <div className="line1"></div>
-        <div className="my-transfers__box--header">
-          <div className="my-transfers__box--header__1">
-            <p>Ref_ID</p>
-          </div>
-          <div className="my-transfers__box--header__2">
-            <p>Status</p>
-          </div>
-          <div className="my-transfers__box--header__3">
-            <p>Amount</p>
-          </div>
-          <div className="my-transfers__box--header__3">
-            <p>Transfer_to</p>
-          </div>
-          <div className="my-transfers__box--header__4">
-            <p>Currency</p>
-          </div>
-          <div className="my-transfers__box--header__5">
-            <p>Transferred_at</p>
-          </div>
-        </div>
-        <div className="line2"></div>
-
-        {my_transfers &&
-          my_transfers.transfer.map((list, i) => (
-            <div className="box-list">
-              <div className="my-transfers__box--content">
-                <div className="my-transfers__box--content__1">
-                  <p>{list.ref_id}</p>
-                </div>
-                <div className="my-transfers__box--content__2">
-                  <p>{list.status}</p>
-                </div>
-                <div className="my-transfers__box--content__3">
-                  <p>${list.amount}</p>
-                </div>
-                <div className="my-transfers__box--content__4">
-                  <p>{list.transfer_to}</p>
-                </div>
-                <div className="my-transfers__box--content__5">
-                  <p>{list.currency}</p>
-                </div>
-                <div className="my-transfers__box--content__6">
-                  <p>{createdAt(list.created_at)}</p>
-                </div>
-              </div>
-              <div className="line3"></div>
-            </div>
-          ))}
-        {/* <div className="line3"></div> */}
-
-        {user.is_email_confrim ? (
-          <div className="box">
-            {my_transfers && !my_transfers.transfer.length && (
-              <p>You didn't make any transfer yet</p>
-            )}
-            {my_transfers && !my_transfers.transfer.length && (
-              <div className="my-transfers__box--btn ripple1">Deposit Now</div>
-            )}
-          </div>
-        ) : (
-          <div
-            data-tooltip="Confirm your email first"
-            data-tooltip-location="right"
-            className="my-transfers__box--btn comingSoon"
-          >
-            Transfer Now
-          </div>
-        )}
-      </div>
+          </button>
+        </form>
+        
+        <Transfers 
+          user={user} 
+          my_transfers={my_transfers} 
+          createdAt={createdAt} 
+        />
+        </>
+      }
       {/* <div className="my-transfers__type--box2">
           <p>From</p>
           <input type="date" name="" id="" />

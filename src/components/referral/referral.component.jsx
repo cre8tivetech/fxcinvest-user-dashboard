@@ -27,7 +27,7 @@ const Referral = ({ user }) => {
       <div className="referral--top">
         <div className="referral--top__content">
           <h1>Refer a Friend</h1>
-          <p>Spread the world about FXCINVEST & Earn up to $10,000</p>
+          <p>Spread the world about FXCINVEST & Earn up to $1,000</p>
         </div>
       </div>
       <div className="referral--bottom">
