@@ -11,14 +11,14 @@ export const InvestmentCardData = [
     color: "var(--secondary-color)",
     content: [
       "Maturity 10 days",
-      "Minimum Investment $50",
+      "Minimum Investment $10",
       "Maximum Investment $1500",
       "Enhanced Security",
       "Wallet Integration",
     ],
     invest: {
       name: "forex",
-      minimum: 50,
+      minimum: 10,
       maximum: 1500,
       days: 10,
       percentage: 10,
