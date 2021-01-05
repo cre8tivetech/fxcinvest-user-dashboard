@@ -22,7 +22,7 @@ const Footer = ({ menu }) => {
   return (
     <footer className="footer" style={{ width: width }}>
       <div className="footer__content">
-        <h1>FXCINVEST</h1>
+        <h1>DHP BTC</h1>
         <p>&#169; copyright {new Date().getFullYear()}</p>
       </div>
     </footer>

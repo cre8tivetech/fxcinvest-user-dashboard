@@ -161,7 +161,7 @@ const DepositFunds = ({ menu, user, expireBitCoinInvoice }) => {
           additional verification.
         </p>
         <p>
-          FXCINVEST is not liable for any transfer delays you may experience due
+          DHP BTC is not liable for any transfer delays you may experience due
           to a disruption of service in the system of the payment processor.
         </p>
       </div>

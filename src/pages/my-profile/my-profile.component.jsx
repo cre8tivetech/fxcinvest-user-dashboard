@@ -47,7 +47,7 @@ const MyProfile = ({ menu, user, fetchUserStart }) => {
       <div className="my-profile__content">
         <div className="my-profile__content--box1">
           <h1>{user.name}</h1>
-          <p>MyFXCINVEST Username: {user.username}</p>
+          <p>MyDHPBTC Username: {user.username}</p>
         </div>
         <div className="my-profile__content--box2">
           <div className="my-profile__content--box2__title">
@@ -64,7 +64,7 @@ const MyProfile = ({ menu, user, fetchUserStart }) => {
               <p>{user.investment.is_active ? user.investment.plan : "None"}</p>
             </div>
             <div className="my-profile__content--box2__contents--3">
-              <p>Change MyFXTM password</p>
+              <p>Change MyDHPBTC password</p>
               <p>Change</p>
             </div>
           </div>

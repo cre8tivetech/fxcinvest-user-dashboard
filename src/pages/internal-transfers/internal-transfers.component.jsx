@@ -125,7 +125,7 @@ const InternalTransfers = ({ menu, user, transferStart, popUp }) => {
             When carrying out non-trading operations between accounts with
             different deposit currencies, a conversion will take place according
             to the Company exchange rates on the day the funds are credited to
-            Fxcinvest account.
+            DHP BTC account.
           </p>
         </div>
         <div className="internal-transfers__btn">

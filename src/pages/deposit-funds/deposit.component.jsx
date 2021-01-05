@@ -251,7 +251,7 @@ const Deposit = ({
                 When carrying out non-trading operations between accounts with
                 different deposit currencies, a conversion will take place
                 according to the Company exchange rates on the day the funds are
-                credited to Fxcinvest account.
+                credited to DHP BTC account.
               </p>
             </div>
             <div className="deposit__content__btn">

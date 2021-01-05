@@ -33,8 +33,8 @@ const Message = ({ user, resendConfirmEmailStart, success }) => {
       <span className="message--close" onClick={() => close()}>
         &times;
       </span>
-      <h1>Welcome to FXCINVEST - your personal client area.</h1>
-      <p>Your FXCINVEST User name: {user.username}</p>
+      <h1>Welcome to DHP BTC - your personal client area.</h1>
+      <p>Your DHP BTC User name: {user.username}</p>
       <p>
         We have sent your login information to your email. Please Confirm your
         email.

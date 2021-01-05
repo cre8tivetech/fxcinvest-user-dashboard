@@ -27,7 +27,7 @@ const Referral = ({ user }) => {
       <div className="referral--top">
         <div className="referral--top__content">
           <h1>Refer a Friend</h1>
-          <p>Spread the world about FXCINVEST & Earn up to $1,000</p>
+          <p>Spread the world about DHP BTC & Earn up to $1,000</p>
         </div>
       </div>
       <div className="referral--bottom">
@@ -36,7 +36,7 @@ const Referral = ({ user }) => {
           <input
             ref={textAreaRef}
             onChange={() => null}
-            value={"https://fxcinvest.com/register/?ref=" + user.username}
+            value={"https://dhpbtc.com/register/?ref=" + user.username}
           />
           <div className="btn ripple1" onClick={copyToClipboard}>
             {copyText}

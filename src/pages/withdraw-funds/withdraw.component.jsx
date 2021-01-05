@@ -282,7 +282,7 @@ const Withdraw = ({
                 When carrying out non-trading operations between accounts with
                 different withdraw currencies, a conversion will take place
                 according to the Company exchange rates on the day the funds are
-                credited to Fxcinvest account.
+                credited to DHP BTC account.
               </p>
             </div>
             <div className="withdraw__content__btn">
