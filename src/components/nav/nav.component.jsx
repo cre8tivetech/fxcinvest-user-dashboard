@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import "./nav.styles.scss";
 // import Logo from "../logo/logo.component";
 // import Logo from "../../assets/img/Icon.svg";
-import Logo from "../../assets/img/Logos.svg";
+import Logo from "../../assets/img/logo2.png";
 import NavList from "../nav/nav-list.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
