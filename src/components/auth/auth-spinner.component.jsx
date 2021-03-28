@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./auth.styles.scss";
-import Logo from "../../assets/img/Icon.svg";
+import Logo from "../../assets/img/logo2.png";
 import { matchPath, withRouter, Route } from "react-router";
 import {
   useHistory,
