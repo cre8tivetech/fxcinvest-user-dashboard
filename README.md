@@ -2,7 +2,7 @@
 
 An investment fontend web app.
 
-## Available Scripts
+## Available Scripts.
 
 `npm start`
 `npm`
